@@ -1,12 +1,10 @@
 import { useEffect } from 'react'
 import { Navigation } from '@/components/Navigation'
 import { HeroSection } from '@/components/HeroSection'
+import { KnowledgeGraphSection } from '@/components/KnowledgeGraphSection'
 import { CollectionSection } from '@/components/CollectionSection'
 import { SearchSection } from '@/components/SearchSection'
-import { KnowledgeGraphSection } from '@/components/KnowledgeGraphSection'
 import { AIAgentSection } from '@/components/AIAgentSection'
-import { ArtifactsSection } from '@/components/ArtifactsSection'
-import { ExhibitionSection } from '@/components/ExhibitionSection'
 import { Footer } from '@/components/Footer'
 
 function App() {
@@ -19,12 +17,10 @@ function App() {
       <Navigation />
       <main>
         <HeroSection />
+        <KnowledgeGraphSection />
         <CollectionSection />
         <SearchSection />
-        <KnowledgeGraphSection />
         <AIAgentSection />
-        <ArtifactsSection />
-        <ExhibitionSection />
       </main>
       <Footer />
     </div>

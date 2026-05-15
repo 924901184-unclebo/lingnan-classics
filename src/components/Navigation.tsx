@@ -3,11 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const navItems = [
-  { label: '典籍', href: '#collection' },
   { label: '图谱', href: '#knowledge-graph' },
+  { label: '藏书', href: '#collection' },
+  { label: '检索', href: '#search' },
   { label: '智能体', href: '#ai-agent' },
-  { label: '文物', href: '#artifacts' },
-  { label: '展览', href: '#exhibition' },
 ]
 
 export function Navigation() {
@@ -20,11 +19,11 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Light theme — always dark text on light bg
-  const textColor = 'hsl(0 0% 10% / 0.8)'
-  const navLinkColor = 'hsl(0 0% 10% / 0.5)'
-  const sealBorderColor = 'hsl(2 63% 38% / 0.5)'
-  const sealTextColor = 'hsl(2 63% 38% / 0.7)'
+  // Dark hero → light text; scrolled → dark text on light bg
+  const textColor = scrolled ? 'hsl(0 0% 10% / 0.8)' : 'rgba(246,243,237,0.85)'
+  const navLinkColor = scrolled ? 'hsl(0 0% 10% / 0.5)' : 'rgba(246,243,237,0.55)'
+  const sealBorderColor = scrolled ? 'hsl(2 63% 38% / 0.5)' : 'rgba(201,169,110,0.6)'
+  const sealTextColor = scrolled ? 'hsl(2 63% 38% / 0.7)' : 'rgba(201,169,110,0.8)'
 
   return (
     <>
