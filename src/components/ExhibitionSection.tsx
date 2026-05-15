@@ -36,7 +36,7 @@ export function ExhibitionSection() {
       id="exhibition"
       ref={ref}
       className="relative py-32 px-6 lg:px-12"
-      style={{ background: 'linear-gradient(180deg, #0d1b21 0%, #122a33 50%, #0d1b21 100%)' }}
+      style={{ background: 'linear-gradient(180deg, #f6f3ed 0%, #f0ece4 50%, #f6f3ed 100%)' }}
     >
       <div className="relative z-10 max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto">
         <motion.div
@@ -52,7 +52,7 @@ export function ExhibitionSection() {
               </span>
               <div className="h-px flex-1 max-w-[80px]" style={{ background: 'linear-gradient(90deg, rgba(201,169,110,0.4), transparent)' }} />
             </div>
-            <h2 className="font-serif text-3xl md:text-5xl" style={{ color: 'rgba(246,243,237,0.95)' }}>
+            <h2 className="font-serif text-3xl md:text-5xl" style={{ color: 'hsl(var(--lingnan-ink))' }}>
               专题展览
             </h2>
           </div>
@@ -69,7 +69,7 @@ export function ExhibitionSection() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.15 * i }}
               className="group cursor-pointer rounded-sm overflow-hidden transition-all duration-500 hover:translate-y-[-4px]"
-              style={{ border: '1px solid rgba(255,255,255,0.06)' }}
+              style={{ border: '1px solid rgba(0,0,0,0.06)' }}
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img
@@ -79,25 +79,25 @@ export function ExhibitionSection() {
                   loading="lazy"
                 />
                 <div className="absolute inset-0" style={{
-                  background: 'linear-gradient(180deg, transparent 40%, rgba(10,20,25,0.9) 100%)',
+                  background: 'linear-gradient(180deg, transparent 40%, rgba(255,255,255,0.9) 100%)',
                 }} />
                 <div className="absolute top-3 left-3">
                   <span className="text-[10px] font-sans px-2 py-1 rounded-sm" style={{
                     background: exhibition.tag === '正在展出' ? 'rgba(158, 43, 37, 0.8)' : 'rgba(0,0,0,0.6)',
-                    color: 'rgba(246,243,237,0.9)',
-                    border: '1px solid rgba(255,255,255,0.1)',
+                    color: 'hsl(var(--lingnan-ink) / 0.85)',
+                    border: '1px solid rgba(0,0,0,0.06)',
                   }}>
                     {exhibition.tag}
                   </span>
                 </div>
                 <div className="absolute bottom-3 left-3 right-3">
-                  <h3 className="font-serif text-sm leading-snug" style={{ color: 'rgba(246,243,237,0.95)' }}>
+                  <h3 className="font-serif text-sm leading-snug" style={{ color: 'hsl(var(--lingnan-ink))' }}>
                     {exhibition.title}
                   </h3>
                 </div>
               </div>
-              <div className="p-4" style={{ background: 'rgba(10,20,25,0.5)' }}>
-                <p className="text-[11px] font-sans leading-relaxed" style={{ color: 'rgba(246,243,237,0.4)' }}>
+              <div className="p-4" style={{ background: 'rgba(255,255,255,0.7)' }}>
+                <p className="text-[11px] font-sans leading-relaxed" style={{ color: 'hsl(var(--lingnan-ink) / 0.35)' }}>
                   {exhibition.desc}
                 </p>
                 <div className="mt-3 text-[10px] font-sans" style={{ color: 'rgba(201,169,110,0.5)' }}>

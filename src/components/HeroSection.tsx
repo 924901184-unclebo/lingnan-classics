@@ -302,7 +302,7 @@ export function HeroSection() {
       {/* Bottom gradient transition */}
       <div
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-30"
-        style={{ background: 'linear-gradient(180deg, transparent 0%, #0a1418 100%)' }}
+        style={{ background: 'linear-gradient(180deg, transparent 0%, #f6f3ed 100%)' }}
       />
     </section>
   )

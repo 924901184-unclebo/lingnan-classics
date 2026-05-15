@@ -139,7 +139,7 @@ export function KnowledgeGraphSection() {
           ctx.lineWidth = 1.5
           ctx.setLineDash([])
         } else {
-          ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)'
+          ctx.strokeStyle = 'rgba(0, 0, 0, 0.06)'
           ctx.lineWidth = 1
           ctx.setLineDash([])
         }
@@ -214,7 +214,7 @@ export function KnowledgeGraphSection() {
         ctx.font = `${node.radius > 30 ? 13 : 11}px "Noto Serif SC", serif`
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
-        ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.95})`
+        ctx.fillStyle = `rgba(26, 26, 26, ${alpha * 0.85})`
         ctx.fillText(node.label, nx, ny)
 
         ctx.globalAlpha = 1
@@ -272,7 +272,7 @@ export function KnowledgeGraphSection() {
       id="knowledge-graph"
       ref={ref}
       className="relative py-32 px-6 lg:px-12 overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #0d1b21 0%, #122a33 50%, #0a1a1f 100%)' }}
+      style={{ background: 'linear-gradient(180deg, #f6f3ed 0%, #f0ece4 50%, #f6f3ed 100%)' }}
     >
       {/* Animated background texture */}
       <div className="absolute inset-0 opacity-20">
@@ -287,7 +287,7 @@ export function KnowledgeGraphSection() {
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
         }}
       />
@@ -306,10 +306,10 @@ export function KnowledgeGraphSection() {
             </span>
             <div className="h-px flex-1 max-w-[120px]" style={{ background: 'linear-gradient(90deg, rgba(201,169,110,0.4), transparent)' }} />
           </div>
-          <h2 className="font-serif text-3xl md:text-5xl mt-2" style={{ color: 'rgba(246,243,237,0.95)' }}>
+          <h2 className="font-serif text-3xl md:text-5xl mt-2" style={{ color: 'hsl(var(--lingnan-ink))' }}>
             岭南知识图谱
           </h2>
-          <p className="mt-4 max-w-[550px] font-sans leading-relaxed text-sm" style={{ color: 'rgba(246,243,237,0.45)' }}>
+          <p className="mt-4 max-w-[550px] font-sans leading-relaxed text-sm" style={{ color: 'hsl(var(--lingnan-ink) / 0.4)' }}>
             以人物、典籍、宗族、地域四维度构建岭南文化知识网络。
             点击节点探索千年文脉的深层关联与传承脉络。
           </p>
@@ -324,7 +324,7 @@ export function KnowledgeGraphSection() {
           className="relative rounded-sm overflow-hidden"
           style={{
             height: '520px',
-            border: '1px solid rgba(255,255,255,0.06)',
+            border: '1px solid rgba(0,0,0,0.06)',
             background: 'rgba(0,0,0,0.2)',
           }}
         >
@@ -344,10 +344,10 @@ export function KnowledgeGraphSection() {
                   className="w-3 h-3 rounded-full border"
                   style={{
                     background: NODE_COLORS[type].fill,
-                    borderColor: 'rgba(255,255,255,0.1)',
+                    borderColor: 'rgba(0,0,0,0.06)',
                   }}
                 />
-                <span className="text-[10px] font-sans" style={{ color: 'rgba(246,243,237,0.4)' }}>
+                <span className="text-[10px] font-sans" style={{ color: 'hsl(var(--lingnan-ink) / 0.35)' }}>
                   {config.label}
                 </span>
               </div>
@@ -363,7 +363,7 @@ export function KnowledgeGraphSection() {
                 exit={{ opacity: 0, x: 20, scale: 0.95 }}
                 className="absolute top-4 right-4 rounded-sm p-5 max-w-[260px]"
                 style={{
-                  background: 'rgba(10, 26, 31, 0.92)',
+                  background: 'rgba(255, 255, 255, 0.9)',
                   border: '1px solid rgba(201, 169, 110, 0.2)',
                   backdropFilter: 'blur(12px)',
                 }}
@@ -377,7 +377,7 @@ export function KnowledgeGraphSection() {
                     {typeConfig[selectedNode.type].label}
                   </span>
                 </div>
-                <div className="font-serif text-base mb-3" style={{ color: 'rgba(246,243,237,0.95)' }}>
+                <div className="font-serif text-base mb-3" style={{ color: 'hsl(var(--lingnan-ink))' }}>
                   {selectedNode.label}
                 </div>
                 <div className="space-y-1.5">
@@ -385,11 +385,11 @@ export function KnowledgeGraphSection() {
                     const otherId = edge.source === selectedNode.id ? edge.target : edge.source
                     const other = NODES.find(n => n.id === otherId)
                     return (
-                      <div key={i} className="flex items-center gap-2 text-[11px] font-sans" style={{ color: 'rgba(246,243,237,0.5)' }}>
+                      <div key={i} className="flex items-center gap-2 text-[11px] font-sans" style={{ color: 'hsl(var(--lingnan-ink) / 0.45)' }}>
                         <span style={{ color: 'rgba(201,169,110,0.6)' }}>—</span>
                         <span>{edge.label}</span>
                         <span>→</span>
-                        <span style={{ color: 'rgba(246,243,237,0.7)' }}>{other?.label}</span>
+                        <span style={{ color: 'hsl(var(--lingnan-ink) / 0.65)' }}>{other?.label}</span>
                       </div>
                     )
                   })}
@@ -405,7 +405,7 @@ export function KnowledgeGraphSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 pt-8"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+          style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}
         >
           {[
             { number: '2,400+', label: '知识节点' },
@@ -414,10 +414,10 @@ export function KnowledgeGraphSection() {
             { number: '实时', label: '动态推理引擎' },
           ].map((stat) => (
             <div key={stat.label}>
-              <div className="font-serif text-xl" style={{ color: 'rgba(246,243,237,0.9)' }}>
+              <div className="font-serif text-xl" style={{ color: 'hsl(var(--lingnan-ink) / 0.85)' }}>
                 {stat.number}
               </div>
-              <div className="text-[11px] font-sans mt-1" style={{ color: 'rgba(246,243,237,0.35)' }}>
+              <div className="text-[11px] font-sans mt-1" style={{ color: 'hsl(var(--lingnan-ink) / 0.3)' }}>
                 {stat.label}
               </div>
             </div>

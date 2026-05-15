@@ -48,10 +48,10 @@ export function ArtifactsSection() {
       id="artifacts"
       ref={ref}
       className="relative py-32 px-6 lg:px-12"
-      style={{ background: 'linear-gradient(180deg, #0d1b21 0%, #0a1418 50%, #0d1b21 100%)' }}
+      style={{ background: 'linear-gradient(180deg, #f6f3ed 0%, #f6f3ed 50%, #f6f3ed 100%)' }}
     >
       <div className="absolute inset-0 opacity-[0.015]" style={{
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+        backgroundImage: 'linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px)',
         backgroundSize: '100px 100px',
       }} />
 
@@ -68,10 +68,10 @@ export function ArtifactsSection() {
             </span>
             <div className="h-px flex-1 max-w-[80px]" style={{ background: 'linear-gradient(90deg, rgba(201,169,110,0.4), transparent)' }} />
           </div>
-          <h2 className="font-serif text-3xl md:text-5xl" style={{ color: 'rgba(246,243,237,0.95)' }}>
+          <h2 className="font-serif text-3xl md:text-5xl" style={{ color: 'hsl(var(--lingnan-ink))' }}>
             数字文物
           </h2>
-          <p className="mt-4 max-w-[500px] font-sans leading-relaxed text-sm" style={{ color: 'rgba(246,243,237,0.4)' }}>
+          <p className="mt-4 max-w-[500px] font-sans leading-relaxed text-sm" style={{ color: 'hsl(var(--lingnan-ink) / 0.35)' }}>
             广彩瓷器、潮州木雕、端砚名品——3D数字化呈现，
             360°旋转观赏，材质光影纤毫毕现。
           </p>
@@ -86,8 +86,8 @@ export function ArtifactsSection() {
             className="lg:col-span-7 relative rounded-sm overflow-hidden"
             style={{
               aspectRatio: '4/3',
-              background: 'radial-gradient(ellipse at center, rgba(20,40,50,1) 0%, rgba(10,20,25,1) 100%)',
-              border: '1px solid rgba(255,255,255,0.06)',
+              background: 'radial-gradient(ellipse at center, rgba(240,236,228,1) 0%, rgba(246,243,237,1) 100%)',
+              border: '1px solid rgba(0,0,0,0.06)',
             }}
           >
             <motion.div
@@ -112,7 +112,7 @@ export function ArtifactsSection() {
               }}>
                 {current.dynasty}
               </div>
-              <div className="text-[10px] font-sans" style={{ color: 'rgba(246,243,237,0.3)' }}>
+              <div className="text-[10px] font-sans" style={{ color: 'hsl(var(--lingnan-ink) / 0.25)' }}>
                 {current.dimensions}
               </div>
             </div>
@@ -138,16 +138,16 @@ export function ArtifactsSection() {
                     onClick={ctrl.action}
                     className="w-8 h-8 rounded-sm flex items-center justify-center transition-all hover:scale-110"
                     style={{
-                      background: 'rgba(255,255,255,0.05)',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      color: 'rgba(246,243,237,0.5)',
+                      background: 'rgba(0,0,0,0.05)',
+                      border: '1px solid rgba(0,0,0,0.08)',
+                      color: 'hsl(var(--lingnan-ink) / 0.45)',
                     }}
                   >
                     {ctrl.icon}
                   </button>
                 ))}
               </div>
-              <span className="text-[9px] font-sans" style={{ color: 'rgba(246,243,237,0.2)' }}>
+              <span className="text-[9px] font-sans" style={{ color: 'hsl(var(--lingnan-ink) / 0.15)' }}>
                 拖拽旋转 · 滚轮缩放
               </span>
             </div>
@@ -167,30 +167,30 @@ export function ArtifactsSection() {
                 className="text-left p-4 rounded-sm transition-all duration-300"
                 style={{
                   background: i === activeIdx ? 'rgba(42,84,99,0.1)' : 'rgba(255,255,255,0.01)',
-                  border: `1px solid ${i === activeIdx ? 'rgba(42,84,99,0.3)' : 'rgba(255,255,255,0.04)'}`,
+                  border: `1px solid ${i === activeIdx ? 'rgba(42,84,99,0.3)' : 'rgba(0,0,0,0.04)'}`,
                 }}
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="font-serif text-sm" style={{ color: i === activeIdx ? 'rgba(246,243,237,0.95)' : 'rgba(246,243,237,0.6)' }}>
+                    <h4 className="font-serif text-sm" style={{ color: i === activeIdx ? 'hsl(var(--lingnan-ink))' : 'hsl(var(--lingnan-ink) / 0.55)' }}>
                       {artifact.name}
                     </h4>
-                    <div className="flex items-center gap-3 mt-1 text-[10px] font-sans" style={{ color: 'rgba(246,243,237,0.3)' }}>
+                    <div className="flex items-center gap-3 mt-1 text-[10px] font-sans" style={{ color: 'hsl(var(--lingnan-ink) / 0.25)' }}>
                       <span>{artifact.dynasty}</span>
                       <span>{artifact.material}</span>
                     </div>
                   </div>
-                  <ChevronRight size={14} style={{ color: i === activeIdx ? 'rgba(201,169,110,0.6)' : 'rgba(255,255,255,0.1)' }} />
+                  <ChevronRight size={14} style={{ color: i === activeIdx ? 'rgba(201,169,110,0.6)' : 'rgba(0,0,0,0.06)' }} />
                 </div>
               </button>
             ))}
 
             {/* Detail Card */}
             <div className="mt-2 p-5 rounded-sm" style={{
-              background: 'rgba(255,255,255,0.02)',
-              border: '1px solid rgba(255,255,255,0.06)',
+              background: 'rgba(0,0,0,0.02)',
+              border: '1px solid rgba(0,0,0,0.06)',
             }}>
-              <p className="text-xs font-sans leading-relaxed" style={{ color: 'rgba(246,243,237,0.5)' }}>
+              <p className="text-xs font-sans leading-relaxed" style={{ color: 'hsl(var(--lingnan-ink) / 0.45)' }}>
                 {current.description}
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
@@ -211,8 +211,8 @@ export function ArtifactsSection() {
                   VR 全景漫游
                 </button>
                 <button className="text-[10px] font-sans px-3 py-1.5 rounded-sm" style={{
-                  color: 'rgba(246,243,237,0.4)',
-                  border: '1px solid rgba(255,255,255,0.08)',
+                  color: 'hsl(var(--lingnan-ink) / 0.35)',
+                  border: '1px solid rgba(0,0,0,0.08)',
                 }}>
                   材质解构
                 </button>
