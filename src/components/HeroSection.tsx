@@ -1,33 +1,138 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { ChevronDown, Anchor, BookOpen, Map } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
 
-const HERO_STORIES = [
+// Floating 3D artifact data
+const FLOATING_ARTIFACTS = [
   {
-    title: '十三行贸易',
-    subtitle: '海上丝路的辉煌',
-    description: '清代广州十三行，一口通商百年，中西贸易枢纽。茶叶、丝绸、瓷器由此远销四海。',
-    image: '/images/thirteen-hongs-trade.png',
-    era: '1757—1842',
+    src: '/images/scroll-3d.png',
+    alt: '古卷轴',
+    className: 'w-[180px] md:w-[240px] lg:w-[300px]',
+    position: 'top-[12%] left-[3%] md:left-[6%]',
+    animation: { y: [0, -18, 0], rotate: [-3, 2, -3] },
+    duration: 7,
+    delay: 0,
   },
   {
-    title: '千年岭南',
-    subtitle: '古籍数字化平台',
-    description: '汇集岭南文化典籍精粹，以知识图谱重构历史脉络，借AI智能体复现千年文脉。',
-    image: '/images/hero-lingnan.png',
-    era: '宋—清',
+    src: '/images/book-3d.png',
+    alt: '线装古书',
+    className: 'w-[150px] md:w-[200px] lg:w-[260px]',
+    position: 'top-[8%] right-[2%] md:right-[6%]',
+    animation: { y: [0, 15, 0], rotate: [2, -2, 2] },
+    duration: 8,
+    delay: 0.5,
+  },
+  {
+    src: '/images/bookstack-3d.png',
+    alt: '古籍书堆',
+    className: 'w-[160px] md:w-[220px] lg:w-[280px]',
+    position: 'bottom-[14%] right-[4%] md:right-[10%]',
+    animation: { y: [0, -12, 0], rotate: [1, -3, 1] },
+    duration: 9,
+    delay: 1,
+  },
+  {
+    src: '/images/scroll-3d.png',
+    alt: '古卷轴',
+    className: 'w-[120px] md:w-[160px] lg:w-[200px] opacity-70',
+    position: 'bottom-[18%] left-[4%] md:left-[8%]',
+    animation: { y: [0, 12, 0], rotate: [-2, 3, -2] },
+    duration: 10,
+    delay: 1.5,
   },
 ]
 
+// Decorative ink particles
+function InkParticles() {
+  const particles = Array.from({ length: 12 }, (_, i) => ({
+    id: i,
+    size: 3 + Math.random() * 5,
+    x: 10 + Math.random() * 80,
+    y: 10 + Math.random() * 80,
+    duration: 15 + Math.random() * 10,
+    delay: Math.random() * 5,
+    opacity: 0.1 + Math.random() * 0.15,
+  }))
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          className="absolute rounded-full"
+          style={{
+            width: p.size,
+            height: p.size,
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            background: `hsl(var(--lingnan-ink) / ${p.opacity})`,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            x: [0, 10, -10, 0],
+            opacity: [p.opacity, p.opacity * 1.5, p.opacity],
+          }}
+          transition={{
+            duration: p.duration,
+            delay: p.delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+// Decorative flying birds (SVG)
+function FlyingBirds() {
+  const birds = [
+    { x: '15%', y: '20%', scale: 0.6, delay: 0 },
+    { x: '75%', y: '15%', scale: 0.45, delay: 1.5 },
+    { x: '85%', y: '28%', scale: 0.35, delay: 3 },
+  ]
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {birds.map((bird, i) => (
+        <motion.svg
+          key={i}
+          className="absolute"
+          style={{ left: bird.x, top: bird.y, transform: `scale(${bird.scale})` }}
+          width="60"
+          height="20"
+          viewBox="0 0 60 20"
+          fill="none"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: [0, 0.5, 0.5, 0], x: [-20, 0, 30, 60] }}
+          transition={{
+            duration: 12,
+            delay: bird.delay + 2,
+            repeat: Infinity,
+            repeatDelay: 8,
+            ease: 'easeInOut',
+          }}
+        >
+          <path
+            d="M2 18C8 12 14 8 20 10C26 8 28 6 30 2C32 6 34 8 40 10C46 8 52 12 58 18"
+            stroke="hsl(var(--lingnan-ink) / 0.3)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </motion.svg>
+      ))}
+    </div>
+  )
+}
+
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [activeStory, setActiveStory] = useState(0)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current) return
       const scrollY = window.scrollY
       const height = window.innerHeight
       setScrollProgress(Math.min(scrollY / height, 1))
@@ -36,249 +141,281 @@ export function HeroSection() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Auto-rotate stories
   useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveStory(prev => (prev + 1) % HERO_STORIES.length)
-    }, 8000)
-    return () => clearInterval(timer)
+    const timer = setTimeout(() => setIsLoaded(true), 100)
+    return () => clearTimeout(timer)
   }, [])
 
-  const current = HERO_STORIES[activeStory]
+  // Title animation variants
+  const titleVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] },
+    },
+  }
+
+  const subtitleVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+    },
+  }
+
+  const artifactVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: (delay: number) => ({
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 1.2, delay: 0.8 + delay, ease: [0.25, 0.46, 0.45, 0.94] },
+    }),
+  }
 
   return (
     <section
       ref={containerRef}
-      className="relative h-[110vh] overflow-hidden"
+      className="relative h-screen min-h-[700px] overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, hsl(38 30% 96%) 0%, hsl(38 28% 93%) 50%, hsl(38 25% 90%) 100%)',
+      }}
     >
-      {/* Background Layers with Parallax */}
-      <AnimatePresence mode="wait">
+      {/* Subtle paper texture overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            radial-gradient(ellipse at 30% 20%, hsl(36 38% 60% / 0.04) 0%, transparent 50%),
+            radial-gradient(ellipse at 70% 80%, hsl(193 37% 28% / 0.03) 0%, transparent 50%),
+            radial-gradient(ellipse at 50% 50%, hsl(38 30% 92% / 0.5) 0%, transparent 70%)
+          `,
+        }}
+      />
+
+      {/* Subtle grid lines for structure */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.03]"
+        style={{
+          backgroundImage: `
+            linear-gradient(90deg, hsl(var(--lingnan-ink)) 1px, transparent 1px),
+            linear-gradient(180deg, hsl(var(--lingnan-ink)) 1px, transparent 1px)
+          `,
+          backgroundSize: '100px 100px',
+        }}
+      />
+
+      {/* Ink particles */}
+      <InkParticles />
+
+      {/* Flying birds */}
+      <FlyingBirds />
+
+      {/* Floating 3D Artifacts */}
+      {FLOATING_ARTIFACTS.map((artifact, index) => (
         <motion.div
-          key={activeStory}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="absolute inset-0"
+          key={index}
+          className={`absolute ${artifact.position} z-10`}
+          variants={artifactVariants}
+          initial="hidden"
+          animate={isLoaded ? 'visible' : 'hidden'}
+          custom={artifact.delay}
         >
-          <img
-            src={current.image}
-            alt={current.title}
-            className="w-full h-full object-cover"
-            style={{
-              transform: `translateY(${scrollProgress * 80}px) scale(${1.05 + scrollProgress * 0.05})`,
-              transition: 'transform 0.1s linear',
-            }}
-          />
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Multi-layer overlays for cinematic depth */}
-      <div className="absolute inset-0" style={{
-        background: 'linear-gradient(180deg, rgba(10,15,20,0.85) 0%, rgba(10,15,20,0.3) 35%, rgba(10,15,20,0.2) 60%, rgba(10,15,20,0.7) 100%)',
-      }} />
-      <div className="absolute inset-0" style={{
-        background: 'radial-gradient(ellipse at 30% 40%, transparent 0%, rgba(10,15,20,0.4) 70%)',
-      }} />
-
-      {/* Floating particles / mist effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: 200 + i * 100,
-              height: 200 + i * 100,
-              left: `${15 + i * 18}%`,
-              top: `${20 + i * 12}%`,
-              background: `radial-gradient(circle, rgba(42,84,99,0.04) 0%, transparent 70%)`,
-            }}
-            animate={{
-              x: [0, 20 + i * 5, 0],
-              y: [0, -15 + i * 3, 0],
-            }}
+          <motion.img
+            src={artifact.src}
+            alt={artifact.alt}
+            className={`${artifact.className} select-none drop-shadow-2xl`}
+            draggable={false}
+            animate={artifact.animation}
             transition={{
-              duration: 8 + i * 2,
+              duration: artifact.duration,
               repeat: Infinity,
               ease: 'easeInOut',
             }}
+            style={{
+              transform: `translateY(${scrollProgress * 30}px)`,
+              filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.1))',
+            }}
           />
-        ))}
-      </div>
+        </motion.div>
+      ))}
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-start pt-[20vh] lg:pt-[22vh] 2xl:pt-[18vh]">
-        <div className="max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto px-6 lg:px-12 2xl:px-20 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Left content */}
-            <div className="lg:col-span-7">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeStory}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-                >
-                  {/* Era tag */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="flex items-center gap-3 mb-6"
-                  >
-                    <div className="h-px w-12" style={{ background: 'rgba(201, 169, 110, 0.6)' }} />
-                    <span className="text-xs font-sans tracking-[0.2em]" style={{ color: 'rgba(201, 169, 110, 0.8)' }}>
-                      {current.era}
-                    </span>
-                  </motion.div>
+      {/* Center Content */}
+      <div className="relative z-20 h-full flex flex-col items-center justify-center">
+        <div className="text-center px-6">
+          {/* Decorative top line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={isLoaded ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 1.5, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="w-16 h-px mx-auto mb-8"
+            style={{ background: 'hsl(var(--lingnan-gold) / 0.6)' }}
+          />
 
-                  {/* Title */}
-                  <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-wide mb-3"
-                    style={{ color: 'rgba(246, 243, 237, 0.95)' }}
-                  >
-                    {current.title}
-                  </h1>
-                  <h2 className="font-serif text-xl md:text-3xl lg:text-4xl font-normal mb-8"
-                    style={{ color: 'rgba(246, 243, 237, 0.6)' }}
-                  >
-                    {current.subtitle}
-                  </h2>
+          {/* Main Title - Large Calligraphic Chinese */}
+          <motion.h1
+            variants={titleVariants}
+            initial="hidden"
+            animate={isLoaded ? 'visible' : 'hidden'}
+            className="font-serif leading-none tracking-[0.08em] mb-4"
+            style={{
+              fontSize: 'clamp(3.5rem, 12vw, 10rem)',
+              color: 'hsl(var(--lingnan-ink))',
+              textShadow: '0 2px 4px rgba(0,0,0,0.03)',
+            }}
+          >
+            岭南古籍
+          </motion.h1>
 
-                  {/* Description */}
-                  <p className="font-sans text-sm md:text-base leading-relaxed max-w-[500px] mb-10"
-                    style={{ color: 'rgba(246, 243, 237, 0.5)' }}
-                  >
-                    {current.description}
-                  </p>
+          {/* English Subtitle */}
+          <motion.p
+            variants={subtitleVariants}
+            initial="hidden"
+            animate={isLoaded ? 'visible' : 'hidden'}
+            className="font-sans text-xs md:text-sm tracking-[0.35em] uppercase mb-6"
+            style={{ color: 'hsl(var(--lingnan-ink) / 0.4)' }}
+          >
+            Lingnan Ancient Classics
+          </motion.p>
 
-                  {/* CTA */}
-                  <div className="flex items-center gap-4">
-                    <Button variant="museum" size="lg"
-                      className="border hover:scale-[1.02]"
-                      style={{
-                        background: 'rgba(42, 84, 99, 0.8)',
-                        borderColor: 'rgba(42, 84, 99, 0.6)',
-                        color: 'rgba(246, 243, 237, 0.95)',
-                      }}
-                    >
-                      <BookOpen size={16} className="mr-2" />
-                      进入典籍馆
-                    </Button>
-                    <Button variant="ghost" size="lg"
-                      style={{ color: 'rgba(246, 243, 237, 0.6)' }}
-                      className="hover:bg-[rgba(255,255,255,0.05)]"
-                    >
-                      <Map size={16} className="mr-2" />
-                      探索图谱
-                    </Button>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+          {/* Chinese Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 1, delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="font-serif text-lg md:text-2xl tracking-[0.15em] mb-3"
+            style={{ color: 'hsl(var(--lingnan-teal))' }}
+          >
+            数字化平台
+          </motion.p>
 
-            {/* Right - Info panels */}
-            <div className="hidden lg:flex lg:col-span-5 flex-col gap-4 items-end pt-8">
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1, duration: 0.8 }}
-                className="p-5 rounded-sm max-w-[280px] w-full"
-                style={{
-                  background: 'rgba(10, 20, 25, 0.6)',
-                  border: '1px solid rgba(255,255,255,0.06)',
-                  backdropFilter: 'blur(8px)',
-                }}
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <Anchor size={14} style={{ color: 'rgba(201, 169, 110, 0.7)' }} />
-                  <span className="text-[10px] font-sans tracking-wider" style={{ color: 'rgba(201, 169, 110, 0.6)' }}>
-                    历史数据
-                  </span>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { val: '3,200+', label: '馆藏典籍' },
-                    { val: '800年', label: '时间跨度' },
-                    { val: '2,400', label: '知识节点' },
-                    { val: '12类', label: '文献分类' },
-                  ].map(s => (
-                    <div key={s.label}>
-                      <div className="font-serif text-lg" style={{ color: 'rgba(246,243,237,0.9)' }}>{s.val}</div>
-                      <div className="text-[10px] font-sans" style={{ color: 'rgba(246,243,237,0.35)' }}>{s.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 1, delay: 1.2 }}
+            className="font-sans text-xs md:text-sm max-w-[420px] mx-auto leading-relaxed mt-6"
+            style={{ color: 'hsl(var(--lingnan-ink) / 0.4)' }}
+          >
+            以知识图谱重构岭南千年文脉，借AI智能体探寻古籍深处的智慧
+          </motion.p>
 
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.3, duration: 0.8 }}
-                className="p-4 rounded-sm max-w-[280px] w-full"
-                style={{
-                  background: 'rgba(10, 20, 25, 0.5)',
-                  border: '1px solid rgba(255,255,255,0.04)',
-                  backdropFilter: 'blur(8px)',
-                }}
-              >
-                <div className="text-[10px] font-sans" style={{ color: 'rgba(246,243,237,0.35)' }}>
-                  AI智能体状态
-                </div>
-                <div className="flex items-center gap-2 mt-1">
-                  <div className="w-1.5 h-1.5 rounded-full animate-pulse-soft" style={{ background: 'rgba(100, 200, 120, 0.8)' }} />
-                  <span className="text-xs font-sans" style={{ color: 'rgba(246,243,237,0.6)' }}>
-                    岭南古籍智能体 · 就绪
-                  </span>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
+          {/* Decorative bottom line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={isLoaded ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 1.5, delay: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="w-16 h-px mx-auto mt-8"
+            style={{ background: 'hsl(var(--lingnan-gold) / 0.6)' }}
+          />
 
-        {/* Story Switcher */}
-        <div className="absolute bottom-32 left-6 lg:left-12 flex items-center gap-3">
-          {HERO_STORIES.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveStory(i)}
-              className="relative h-1 rounded-full overflow-hidden transition-all duration-500"
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 1.6 }}
+            className="mt-12"
+          >
+            <a
+              href="#collection"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-sm font-sans text-xs tracking-[0.15em] transition-all duration-300 hover:scale-[1.02]"
               style={{
-                width: i === activeStory ? 48 : 16,
-                background: 'rgba(255,255,255,0.15)',
+                background: 'hsl(var(--lingnan-teal))',
+                color: 'hsl(var(--lingnan-paper))',
+                boxShadow: '0 8px 32px hsl(193 37% 28% / 0.2)',
               }}
             >
-              {i === activeStory && (
-                <motion.div
-                  initial={{ width: '0%' }}
-                  animate={{ width: '100%' }}
-                  transition={{ duration: 8, ease: 'linear' }}
-                  className="absolute inset-y-0 left-0 rounded-full"
-                  style={{ background: 'rgba(201, 169, 110, 0.8)' }}
-                />
-              )}
-            </button>
-          ))}
+              探索典藏
+            </a>
+          </motion.div>
         </div>
       </div>
+
+      {/* Decorative corner elements */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute top-8 left-8 w-12 h-12 pointer-events-none hidden md:block"
+      >
+        <div className="absolute top-0 left-0 w-full h-px" style={{ background: 'hsl(var(--lingnan-gold) / 0.3)' }} />
+        <div className="absolute top-0 left-0 h-full w-px" style={{ background: 'hsl(var(--lingnan-gold) / 0.3)' }} />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute top-8 right-8 w-12 h-12 pointer-events-none hidden md:block"
+      >
+        <div className="absolute top-0 right-0 w-full h-px" style={{ background: 'hsl(var(--lingnan-gold) / 0.3)' }} />
+        <div className="absolute top-0 right-0 h-full w-px" style={{ background: 'hsl(var(--lingnan-gold) / 0.3)' }} />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-8 left-8 w-12 h-12 pointer-events-none hidden md:block"
+      >
+        <div className="absolute bottom-0 left-0 w-full h-px" style={{ background: 'hsl(var(--lingnan-gold) / 0.3)' }} />
+        <div className="absolute bottom-0 left-0 h-full w-px" style={{ background: 'hsl(var(--lingnan-gold) / 0.3)' }} />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-8 right-8 w-12 h-12 pointer-events-none hidden md:block"
+      >
+        <div className="absolute bottom-0 right-0 w-full h-px" style={{ background: 'hsl(var(--lingnan-gold) / 0.3)' }} />
+        <div className="absolute bottom-0 right-0 h-full w-px" style={{ background: 'hsl(var(--lingnan-gold) / 0.3)' }} />
+      </motion.div>
+
+      {/* Seal stamp decoration */}
+      <motion.div
+        initial={{ opacity: 0, rotate: -10 }}
+        animate={isLoaded ? { opacity: 0.6, rotate: -5 } : { opacity: 0, rotate: -10 }}
+        transition={{ delay: 2.5, duration: 1 }}
+        className="absolute bottom-24 left-12 hidden lg:block pointer-events-none"
+      >
+        <div
+          className="px-3 py-2 border-2 font-serif text-sm tracking-wider"
+          style={{
+            borderColor: 'hsl(var(--lingnan-vermilion) / 0.5)',
+            color: 'hsl(var(--lingnan-vermilion) / 0.5)',
+          }}
+        >
+          岭南
+        </div>
+      </motion.div>
 
       {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 - scrollProgress * 3 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        transition={{ delay: 2 }}
+        className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
       >
-        <span className="text-[10px] font-sans tracking-[0.2em]" style={{ color: 'rgba(246,243,237,0.4)' }}>
+        <span
+          className="text-[10px] font-sans tracking-[0.25em]"
+          style={{ color: 'hsl(var(--lingnan-ink) / 0.3)' }}
+        >
           SCROLL
         </span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <ChevronDown size={18} style={{ color: 'rgba(246,243,237,0.4)' }} />
+          <ChevronDown size={16} style={{ color: 'hsl(var(--lingnan-ink) / 0.3)' }} />
         </motion.div>
       </motion.div>
+
+      {/* Bottom gradient transition to dark sections */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-30"
+        style={{
+          background: 'linear-gradient(180deg, transparent 0%, #0a1418 100%)',
+        }}
+      />
     </section>
   )
 }
