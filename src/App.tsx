@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Navigation } from '@/components/Navigation'
 import { HeroSection } from '@/components/HeroSection'
 import { CollectionSection } from '@/components/CollectionSection'
@@ -9,6 +10,10 @@ import { ExhibitionSection } from '@/components/ExhibitionSection'
 import { Footer } from '@/components/Footer'
 
 function App() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="min-h-screen" style={{ background: '#0a1418' }}>
       <Navigation />
