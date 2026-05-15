@@ -83,24 +83,25 @@ export function HeroSection() {
       ref={containerRef}
       className="relative min-h-screen overflow-hidden"
     >
-      {/* Background image - full visibility */}
+      {/* Background image - ancient text manuscript */}
       <div className="absolute inset-0">
         <img
-          src="/images/hero-lingnan.png"
+          src="/images/ancient-text-bg.png"
           alt=""
           className="w-full h-full object-cover"
           style={{
-            transform: `translateY(${scrollProgress * 50}px) scale(${1.05 + scrollProgress * 0.03})`,
+            transform: `translateY(${scrollProgress * 30}px) scale(${1.02 + scrollProgress * 0.02})`,
             transition: 'transform 0.1s linear',
+            opacity: 0.35,
           }}
         />
       </div>
 
-      {/* Very subtle overlay for text readability only */}
+      {/* Warm paper base tone */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.08) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0.35) 100%)',
+          background: 'linear-gradient(180deg, rgba(246,243,237,0.7) 0%, rgba(246,243,237,0.5) 50%, rgba(246,243,237,0.75) 100%)',
         }}
       />
 
@@ -115,12 +116,12 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm"
             style={{
-              background: 'rgba(255,255,255,0.1)',
-              border: '1px solid rgba(255,255,255,0.2)',
+              background: 'hsl(var(--lingnan-teal) / 0.08)',
+              border: '1px solid hsl(var(--lingnan-teal) / 0.15)',
             }}
           >
-            <Brain size={14} style={{ color: 'rgba(246,243,237,0.9)' }} />
-            <span className="font-sans text-[11px] tracking-wider" style={{ color: 'rgba(246,243,237,0.9)' }}>
+            <Brain size={14} style={{ color: 'hsl(var(--lingnan-teal))' }} />
+            <span className="font-sans text-[11px] tracking-wider" style={{ color: 'hsl(var(--lingnan-teal))' }}>
               AI-POWERED PLATFORM
             </span>
           </motion.div>
@@ -146,7 +147,7 @@ export function HeroSection() {
             initial="hidden"
             animate={isLoaded ? 'visible' : 'hidden'}
             className="font-sans text-[11px] md:text-xs tracking-[0.3em] uppercase"
-            style={{ color: 'rgba(246,243,237,0.5)' }}
+            style={{ color: 'hsl(var(--lingnan-ink) / 0.4)' }}
           >
             Lingnan Ancient Classics AI Platform
           </motion.p>
@@ -291,11 +292,11 @@ export function HeroSection() {
         transition={{ delay: 2 }}
         className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
       >
-        <span className="text-[10px] font-sans tracking-[0.25em]" style={{ color: 'rgba(246,243,237,0.4)' }}>
+        <span className="text-[10px] font-sans tracking-[0.25em]" style={{ color: 'hsl(var(--lingnan-ink) / 0.3)' }}>
           SCROLL
         </span>
         <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}>
-          <ChevronDown size={16} style={{ color: 'rgba(246,243,237,0.4)' }} />
+          <ChevronDown size={16} style={{ color: 'hsl(var(--lingnan-ink) / 0.3)' }} />
         </motion.div>
       </motion.div>
 
