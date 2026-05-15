@@ -108,9 +108,9 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center">
+      <div className="relative z-10 h-full flex flex-col justify-start pt-[18vh] 2xl:pt-[14vh]">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left content */}
             <div className="lg:col-span-7">
               <AnimatePresence mode="wait">
@@ -179,7 +179,7 @@ export function HeroSection() {
             </div>
 
             {/* Right - Info panels */}
-            <div className="hidden lg:flex lg:col-span-5 flex-col gap-4 items-end">
+            <div className="hidden lg:flex lg:col-span-5 flex-col gap-4 items-end pt-8">
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
