@@ -2,46 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
-// Floating 3D artifact data
-const FLOATING_ARTIFACTS = [
-  {
-    src: '/images/scroll-3d.png',
-    alt: '古卷轴',
-    className: 'w-[180px] md:w-[240px] lg:w-[300px]',
-    position: 'top-[12%] left-[3%] md:left-[6%]',
-    animation: { y: [0, -18, 0], rotate: [-3, 2, -3] },
-    duration: 7,
-    delay: 0,
-  },
-  {
-    src: '/images/book-3d.png',
-    alt: '线装古书',
-    className: 'w-[150px] md:w-[200px] lg:w-[260px]',
-    position: 'top-[8%] right-[2%] md:right-[6%]',
-    animation: { y: [0, 15, 0], rotate: [2, -2, 2] },
-    duration: 8,
-    delay: 0.5,
-  },
-  {
-    src: '/images/bookstack-3d.png',
-    alt: '古籍书堆',
-    className: 'w-[160px] md:w-[220px] lg:w-[280px]',
-    position: 'bottom-[14%] right-[4%] md:right-[10%]',
-    animation: { y: [0, -12, 0], rotate: [1, -3, 1] },
-    duration: 9,
-    delay: 1,
-  },
-  {
-    src: '/images/scroll-3d.png',
-    alt: '古卷轴',
-    className: 'w-[120px] md:w-[160px] lg:w-[200px] opacity-70',
-    position: 'bottom-[18%] left-[4%] md:left-[8%]',
-    animation: { y: [0, 12, 0], rotate: [-2, 3, -2] },
-    duration: 10,
-    delay: 1.5,
-  },
-]
-
 // Decorative ink particles
 function InkParticles() {
   const particles = Array.from({ length: 12 }, (_, i) => ({
@@ -165,14 +125,6 @@ export function HeroSection() {
     },
   }
 
-  const artifactVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: (delay: number) => ({
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 1.2, delay: 0.8 + delay, ease: [0.25, 0.46, 0.45, 0.94] },
-    }),
-  }
 
   return (
     <section
@@ -217,35 +169,6 @@ export function HeroSection() {
 
       {/* Flying birds */}
       <FlyingBirds />
-
-      {/* Floating 3D Artifacts */}
-      {FLOATING_ARTIFACTS.map((artifact, index) => (
-        <motion.div
-          key={index}
-          className={`absolute ${artifact.position} z-10`}
-          variants={artifactVariants}
-          initial="hidden"
-          animate={isLoaded ? 'visible' : 'hidden'}
-          custom={artifact.delay}
-        >
-          <motion.img
-            src={artifact.src}
-            alt={artifact.alt}
-            className={`${artifact.className} select-none drop-shadow-2xl`}
-            draggable={false}
-            animate={artifact.animation}
-            transition={{
-              duration: artifact.duration,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            style={{
-              transform: `translateY(${scrollProgress * 30}px)`,
-              filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.1))',
-            }}
-          />
-        </motion.div>
-      ))}
 
       {/* Center Content */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center">
