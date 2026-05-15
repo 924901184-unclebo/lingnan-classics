@@ -26,29 +26,44 @@ export function HeroSection() {
     <section
       ref={containerRef}
       className="relative min-h-screen overflow-hidden"
-      style={{ background: '#0c1a22' }}
+      style={{ background: '#1a1410' }}
     >
-      {/* Full-bleed background — ancient books + tech aesthetic */}
-      <div className="absolute inset-0">
+      {/* Background image — positioned in lower portion, not full-bleed */}
+      <div className="absolute inset-x-0 bottom-0 h-[65%]">
         <motion.img
-          src="/images/hero-tech-classics.png"
+          src="/images/hero-books-shelf.png"
           alt=""
-          className="w-full h-full object-cover"
-          initial={{ scale: 1.08, opacity: 0 }}
-          animate={isLoaded ? { scale: 1, opacity: 0.85 } : { scale: 1.08, opacity: 0 }}
-          transition={{ duration: 1.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="w-full h-full object-cover object-center"
+          initial={{ scale: 1.05, opacity: 0 }}
+          animate={isLoaded ? { scale: 1, opacity: 0.7 } : { scale: 1.05, opacity: 0 }}
+          transition={{ duration: 2, ease: [0.25, 0.46, 0.45, 0.94] }}
           style={{
-            transform: `translateY(${scrollProgress * 50}px) scale(${1 + scrollProgress * 0.05})`,
+            transform: `translateY(${scrollProgress * 40}px)`,
             transition: 'transform 0.1s linear',
+          }}
+        />
+        {/* Gradient fade from image to solid color above */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'linear-gradient(180deg, #1a1410 0%, rgba(26,20,16,0.4) 40%, rgba(26,20,16,0.2) 70%, rgba(26,20,16,0.6) 100%)',
           }}
         />
       </div>
 
-      {/* Dark overlay for readability */}
+      {/* Top solid area — same color family extends up */}
+      <div
+        className="absolute inset-x-0 top-0 h-[45%] pointer-events-none"
+        style={{
+          background: 'linear-gradient(180deg, #1a1410 0%, #1a1410 60%, transparent 100%)',
+        }}
+      />
+
+      {/* Subtle warm vignette overlay */}
       <div
         className="absolute inset-0 pointer-events-none z-10"
         style={{
-          background: 'radial-gradient(ellipse 70% 60% at 50% 40%, rgba(12,26,34,0.3) 0%, rgba(12,26,34,0.6) 100%)',
+          background: 'radial-gradient(ellipse 80% 70% at 50% 55%, transparent 30%, rgba(26,20,16,0.7) 100%)',
         }}
       />
 
@@ -60,7 +75,7 @@ export function HeroSection() {
           animate={isLoaded ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
           transition={{ duration: 1, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="w-16 h-[1px] mb-8"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.7), transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.6), transparent)' }}
         />
 
         {/* Main Title */}
@@ -86,7 +101,7 @@ export function HeroSection() {
           animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="font-sans text-[11px] md:text-xs tracking-[0.35em] uppercase mt-5 text-center"
-          style={{ color: 'rgba(246,243,237,0.4)' }}
+          style={{ color: 'rgba(246,243,237,0.35)' }}
         >
           LINGNAN ANCIENT CLASSICS AI PLATFORM
         </motion.p>
@@ -97,7 +112,7 @@ export function HeroSection() {
           animate={isLoaded ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
           transition={{ duration: 1, delay: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="w-16 h-[1px] mt-8"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.7), transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.6), transparent)' }}
         />
 
         {/* Tagline */}
@@ -106,7 +121,7 @@ export function HeroSection() {
           animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1, delay: 1.4 }}
           className="font-serif text-sm md:text-base mt-10 text-center tracking-wider"
-          style={{ color: 'rgba(246,243,237,0.5)' }}
+          style={{ color: 'rgba(201,169,110,0.6)' }}
         >
           传承岭南千年文脉 · 智联古籍知识图谱
         </motion.p>
@@ -121,7 +136,7 @@ export function HeroSection() {
       >
         <span
           className="text-[10px] font-sans tracking-[0.25em]"
-          style={{ color: 'rgba(246,243,237,0.35)' }}
+          style={{ color: 'rgba(246,243,237,0.25)' }}
         >
           SCROLL
         </span>
@@ -129,11 +144,11 @@ export function HeroSection() {
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <ChevronDown size={16} style={{ color: 'rgba(246,243,237,0.35)' }} />
+          <ChevronDown size={16} style={{ color: 'rgba(246,243,237,0.25)' }} />
         </motion.div>
       </motion.div>
 
-      {/* Bottom gradient transition to next section */}
+      {/* Bottom gradient transition — blends into next section */}
       <div
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-30"
         style={{ background: 'linear-gradient(180deg, transparent 0%, #152228 100%)' }}
