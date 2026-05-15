@@ -20,11 +20,11 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Color scheme: light text on dark bg when scrolled, dark text on light bg at top
-  const textColor = scrolled ? 'rgba(246,243,237,0.85)' : 'hsl(0 0% 10% / 0.8)'
-  const navLinkColor = scrolled ? 'rgba(246,243,237,0.55)' : 'hsl(0 0% 10% / 0.5)'
-  const sealBorderColor = scrolled ? 'rgba(201,169,110,0.5)' : 'hsl(2 63% 38% / 0.5)'
-  const sealTextColor = scrolled ? 'rgba(201,169,110,0.8)' : 'hsl(2 63% 38% / 0.7)'
+  // Always light text since hero now shows full background image
+  const textColor = 'rgba(246,243,237,0.85)'
+  const navLinkColor = 'rgba(246,243,237,0.55)'
+  const sealBorderColor = 'rgba(201,169,110,0.5)'
+  const sealTextColor = 'rgba(201,169,110,0.8)'
 
   return (
     <>
