@@ -10,7 +10,7 @@ export function Footer() {
       className="relative py-20 px-6 lg:px-12"
       style={{ background: '#080f13', borderTop: '1px solid rgba(255,255,255,0.04)' }}
     >
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

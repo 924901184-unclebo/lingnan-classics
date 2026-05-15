@@ -58,7 +58,7 @@ export function AIAgentSection() {
       className="relative py-32 px-6 lg:px-12"
       style={{ background: 'linear-gradient(180deg, #0a1a1f 0%, #122028 50%, #0d1b21 100%)' }}
     >
-      <div className="relative z-10 max-w-[1400px] mx-auto">
+      <div className="relative z-10 max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left: Description */}
           <motion.div

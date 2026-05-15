@@ -55,7 +55,7 @@ export function ArtifactsSection() {
         backgroundSize: '100px 100px',
       }} />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto">
+      <div className="relative z-10 max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

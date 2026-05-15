@@ -108,9 +108,9 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-start pt-[18vh] 2xl:pt-[14vh]">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="relative z-10 h-full flex flex-col justify-start pt-[20vh] lg:pt-[22vh] 2xl:pt-[18vh]">
+        <div className="max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto px-6 lg:px-12 2xl:px-20 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left content */}
             <div className="lg:col-span-7">
               <AnimatePresence mode="wait">

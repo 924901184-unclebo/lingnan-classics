@@ -65,7 +65,7 @@ export function CollectionSection() {
         }}
       />
 
-      <div className="relative z-10 max-w-[1400px] mx-auto">
+      <div className="relative z-10 max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto">
         {/* Header Row */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

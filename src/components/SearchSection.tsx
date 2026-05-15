@@ -22,7 +22,7 @@ export function SearchSection() {
       className="relative py-24 px-6 lg:px-12"
       style={{ background: '#0b1519' }}
     >
-      <div className="max-w-[800px] mx-auto">
+      <div className="max-w-[800px] 2xl:max-w-[960px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

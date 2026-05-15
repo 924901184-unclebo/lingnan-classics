@@ -38,7 +38,7 @@ export function ExhibitionSection() {
       className="relative py-32 px-6 lg:px-12"
       style={{ background: 'linear-gradient(180deg, #0d1b21 0%, #122a33 50%, #0d1b21 100%)' }}
     >
-      <div className="relative z-10 max-w-[1400px] mx-auto">
+      <div className="relative z-10 max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

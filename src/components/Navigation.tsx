@@ -33,7 +33,7 @@ export function Navigation() {
           borderBottom: scrolled ? '1px solid rgba(255,255,255,0.04)' : 'none',
         }}
       >
-        <nav className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+        <nav className="max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto px-6 lg:px-12 2xl:px-16 h-20 flex items-center justify-between">
           <a href="#" className="flex items-center gap-3">
             <div className="seal-stamp !transform-none !rotate-0 !p-1.5 !text-[10px]" style={{
               borderColor: 'rgba(201,169,110,0.5)',
