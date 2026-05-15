@@ -133,8 +133,8 @@ export function HeroSection() {
             className="font-serif leading-[1.2] tracking-[0.04em] mb-4"
             style={{
               fontSize: 'clamp(1.8rem, 5vw, 4rem)',
-              color: 'rgba(246,243,237,0.95)',
-              textShadow: '0 2px 20px rgba(0,0,0,0.3)',
+              color: '#1a2a3a',
+              textShadow: '0 1px 3px rgba(255,255,255,0.5)',
             }}
           >
             岭南古籍文献语料数据人工智能平台
