@@ -113,7 +113,7 @@ export function CollectionSection() {
               <div className="h-px w-16" style={{ background: 'linear-gradient(90deg, hsl(var(--lingnan-gold) / 0.5), transparent)' }} />
             </div>
             <h2 className="font-serif text-3xl md:text-5xl" style={{ color: 'hsl(var(--lingnan-ink))' }}>
-              南岭藏书
+              岭南藏书
             </h2>
             <p className="mt-3 font-sans leading-relaxed text-sm max-w-[460px]" style={{ color: 'hsl(var(--lingnan-ink) / 0.55)' }}>
               岭南古籍出版精品，汇聚方志、别集、丛书、档案等类目。全新校注整理，传承千年文脉。
