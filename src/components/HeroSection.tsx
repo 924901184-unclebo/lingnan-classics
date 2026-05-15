@@ -178,31 +178,37 @@ export function HeroSection() {
     <section
       ref={containerRef}
       className="relative h-screen min-h-[700px] overflow-hidden"
-      style={{
-        background: 'linear-gradient(180deg, hsl(38 30% 96%) 0%, hsl(38 28% 93%) 50%, hsl(38 25% 90%) 100%)',
-      }}
     >
-      {/* Subtle paper texture overlay */}
+      {/* Background image - first version hero */}
+      <div className="absolute inset-0">
+        <img
+          src="/images/hero-lingnan.png"
+          alt=""
+          className="w-full h-full object-cover"
+          style={{
+            transform: `translateY(${scrollProgress * 50}px) scale(${1.05 + scrollProgress * 0.03})`,
+            transition: 'transform 0.1s linear',
+          }}
+        />
+      </div>
+
+      {/* Light paper overlay for readability - keeps 数字藏经洞 aesthetic */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(180deg, hsl(38 30% 96% / 0.82) 0%, hsl(38 28% 93% / 0.75) 40%, hsl(38 25% 90% / 0.7) 70%, hsl(38 25% 88% / 0.85) 100%)',
+        }}
+      />
+
+      {/* Subtle radial light effects */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: `
+            radial-gradient(ellipse at 50% 50%, hsl(38 30% 96% / 0.4) 0%, transparent 60%),
             radial-gradient(ellipse at 30% 20%, hsl(36 38% 60% / 0.04) 0%, transparent 50%),
-            radial-gradient(ellipse at 70% 80%, hsl(193 37% 28% / 0.03) 0%, transparent 50%),
-            radial-gradient(ellipse at 50% 50%, hsl(38 30% 92% / 0.5) 0%, transparent 70%)
+            radial-gradient(ellipse at 70% 80%, hsl(193 37% 28% / 0.03) 0%, transparent 50%)
           `,
-        }}
-      />
-
-      {/* Subtle grid lines for structure */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage: `
-            linear-gradient(90deg, hsl(var(--lingnan-ink)) 1px, transparent 1px),
-            linear-gradient(180deg, hsl(var(--lingnan-ink)) 1px, transparent 1px)
-          `,
-          backgroundSize: '100px 100px',
         }}
       />
 
