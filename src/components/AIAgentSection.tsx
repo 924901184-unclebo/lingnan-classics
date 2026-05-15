@@ -56,7 +56,7 @@ export function AIAgentSection() {
       id="ai-agent"
       ref={ref}
       className="relative py-32 px-6 lg:px-12"
-      style={{ background: 'linear-gradient(180deg, #f6f3ed 0%, #f0ece4 50%, #f6f3ed 100%)' }}
+      style={{ background: '#f6f3ed' }}
     >
       <div className="relative z-10 max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -76,7 +76,7 @@ export function AIAgentSection() {
             <h2 className="font-serif text-3xl md:text-5xl" style={{ color: 'hsl(var(--lingnan-ink))' }}>
               古籍智能体
             </h2>
-            <p className="mt-4 font-sans leading-relaxed text-sm" style={{ color: 'hsl(var(--lingnan-ink) / 0.35)' }}>
+            <p className="mt-4 font-sans leading-relaxed text-sm" style={{ color: 'hsl(var(--lingnan-ink) / 0.5)' }}>
               基于岭南古籍语料微调的专属AI，支持文言文断句、
               白话翻译、历史考据与知识图谱关联推理。
             </p>
@@ -101,7 +101,7 @@ export function AIAgentSection() {
                     <h4 className="font-sans text-sm font-medium" style={{ color: 'hsl(var(--lingnan-ink) / 0.75)' }}>
                       {item.title}
                     </h4>
-                    <p className="text-[11px] font-sans mt-0.5" style={{ color: 'hsl(var(--lingnan-ink) / 0.3)' }}>
+                    <p className="text-[11px] font-sans mt-0.5" style={{ color: 'hsl(var(--lingnan-ink) / 0.45)' }}>
                       {item.desc}
                     </p>
                   </div>
@@ -117,16 +117,16 @@ export function AIAgentSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="lg:col-span-7 rounded-sm overflow-hidden"
             style={{
-              background: 'rgba(255,255,255,0.7)',
-              border: '1px solid rgba(0,0,0,0.06)',
+              background: 'rgba(255,255,255,0.85)',
+              border: '1px solid rgba(0,0,0,0.1)',
               backdropFilter: 'blur(8px)',
             }}
           >
             {/* Chat Header */}
-            <div className="px-5 py-4 flex items-center gap-3" style={{ borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
+            <div className="px-5 py-4 flex items-center gap-3" style={{ borderBottom: '1px solid rgba(0,0,0,0.1)' }}>
               <div className="w-2 h-2 rounded-full animate-pulse-soft" style={{ background: 'rgba(100, 200, 120, 0.7)' }} />
               <span className="font-serif text-sm" style={{ color: 'hsl(var(--lingnan-ink) / 0.75)' }}>岭南古籍智能体</span>
-              <span className="text-[10px] font-sans ml-auto" style={{ color: 'hsl(var(--lingnan-ink) / 0.25)' }}>
+              <span className="text-[10px] font-sans ml-auto" style={{ color: 'hsl(var(--lingnan-ink) / 0.35)' }}>
                 <Sparkles size={10} className="inline mr-1" />
                 知识图谱 · 已就绪
               </span>
@@ -197,7 +197,7 @@ export function AIAgentSection() {
             </div>
 
             {/* Input */}
-            <div className="px-5 py-3 flex items-center gap-3" style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+            <div className="px-5 py-3 flex items-center gap-3" style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>
               <BookOpen size={16} style={{ color: 'hsl(var(--lingnan-ink) / 0.2)' }} />
               <input
                 type="text"

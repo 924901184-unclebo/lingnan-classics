@@ -54,7 +54,7 @@ export function CollectionSection() {
       id="collection"
       ref={ref}
       className="relative py-28 lg:py-36 px-6 lg:px-12"
-      style={{ background: '#f6f3ed' }}
+      style={{ background: '#f0ece4' }}
     >
       {/* Subtle grid */}
       <div
@@ -83,7 +83,7 @@ export function CollectionSection() {
             <h2 className="font-serif text-3xl md:text-5xl" style={{ color: 'hsl(var(--lingnan-ink))' }}>
               馆藏典籍
             </h2>
-            <p className="mt-3 font-sans leading-relaxed text-sm max-w-[420px]" style={{ color: 'hsl(var(--lingnan-ink) / 0.45)' }}>
+            <p className="mt-3 font-sans leading-relaxed text-sm max-w-[420px]" style={{ color: 'hsl(var(--lingnan-ink) / 0.55)' }}>
               收录岭南地区历代珍贵典籍，支持高清瓦片阅览、无损放大、OCR识别与智能断句标注
             </p>
           </div>
@@ -121,7 +121,7 @@ export function CollectionSection() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.15 }}
               className="group relative overflow-hidden rounded-lg"
-              style={{ border: '1px solid rgba(0,0,0,0.06)', boxShadow: '0 4px 24px rgba(0,0,0,0.04)' }}
+              style={{ border: '1px solid rgba(0,0,0,0.1)', boxShadow: '0 4px 24px rgba(0,0,0,0.04)' }}
             >
               <div className="relative aspect-[4/3]">
                 <img
@@ -163,17 +163,17 @@ export function CollectionSection() {
               transition={{ duration: 0.6, delay: 0.35 }}
               className="group cursor-pointer rounded-lg p-6 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-md"
               style={{
-                background: 'rgba(255,255,255,0.7)',
-                border: '1px solid rgba(0,0,0,0.06)',
+                background: 'rgba(255,255,255,0.85)',
+                border: '1px solid rgba(0,0,0,0.1)',
                 backdropFilter: 'blur(8px)',
-                boxShadow: '0 2px 12px rgba(0,0,0,0.03), inset 0 1px 0 rgba(255,255,255,0.8)',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9)',
               }}
             >
               <div className="flex items-start gap-5">
-                <span className="font-serif text-3xl font-light shrink-0" style={{ color: 'hsl(var(--lingnan-ink) / 0.08)' }}>02</span>
+                <span className="font-serif text-3xl font-light shrink-0" style={{ color: 'hsl(var(--lingnan-ink) / 0.1)' }}>02</span>
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <h4 className="font-serif text-lg" style={{ color: 'hsl(var(--lingnan-ink) / 0.85)' }}>{manuscripts[1].title}</h4>
+                    <h4 className="font-serif text-lg" style={{ color: 'hsl(var(--lingnan-ink) / 0.9)' }}>{manuscripts[1].title}</h4>
                     <span className="text-[9px] font-sans px-2 py-0.5 rounded-full" style={{
                       background: 'hsl(var(--lingnan-vermilion) / 0.08)',
                       color: 'hsl(var(--lingnan-vermilion))',
@@ -187,7 +187,7 @@ export function CollectionSection() {
                     <span className="w-1 h-1 rounded-full bg-current opacity-30" />
                     <span>{manuscripts[1].volumes}</span>
                   </div>
-                  <p className="text-[13px] font-sans leading-relaxed" style={{ color: 'hsl(var(--lingnan-ink) / 0.5)' }}>{manuscripts[1].description}</p>
+                  <p className="text-[13px] font-sans leading-relaxed" style={{ color: 'hsl(var(--lingnan-ink) / 0.6)' }}>{manuscripts[1].description}</p>
                   <div className="flex gap-2 mt-4">
                     {manuscripts[1].highlights.map(h => (
                       <span key={h} className="text-[9px] font-sans px-2 py-1 rounded-full" style={{
@@ -212,19 +212,19 @@ export function CollectionSection() {
                 transition={{ duration: 0.6, delay: 0.25 + i * 0.12 }}
                 className="group cursor-pointer rounded-lg p-6 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-md flex-1"
                 style={{
-                  background: 'rgba(255,255,255,0.7)',
-                  border: '1px solid rgba(0,0,0,0.06)',
+                  background: 'rgba(255,255,255,0.85)',
+                  border: '1px solid rgba(0,0,0,0.1)',
                   backdropFilter: 'blur(8px)',
-                  boxShadow: '0 2px 12px rgba(0,0,0,0.03), inset 0 1px 0 rgba(255,255,255,0.8)',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9)',
                 }}
               >
                 <div className="flex items-start gap-5 h-full">
-                  <span className="font-serif text-3xl font-light shrink-0" style={{ color: 'hsl(var(--lingnan-ink) / 0.08)' }}>
+                  <span className="font-serif text-3xl font-light shrink-0" style={{ color: 'hsl(var(--lingnan-ink) / 0.1)' }}>
                     {String(i + 3).padStart(2, '0')}
                   </span>
                   <div className="flex-1 flex flex-col">
                     <div className="flex items-center gap-3 mb-2">
-                      <h4 className="font-serif text-lg" style={{ color: 'hsl(var(--lingnan-ink) / 0.85)' }}>{ms.title}</h4>
+                      <h4 className="font-serif text-lg" style={{ color: 'hsl(var(--lingnan-ink) / 0.9)' }}>{ms.title}</h4>
                       <span className="text-[9px] font-sans px-2 py-0.5 rounded-full" style={{
                         background: ms.category === '方志' ? 'hsl(var(--lingnan-teal) / 0.08)' : 'hsl(var(--lingnan-vermilion) / 0.08)',
                         color: ms.category === '方志' ? 'hsl(var(--lingnan-teal))' : 'hsl(var(--lingnan-vermilion))',
@@ -238,7 +238,7 @@ export function CollectionSection() {
                       <span className="w-1 h-1 rounded-full bg-current opacity-30" />
                       <span>{ms.volumes}</span>
                     </div>
-                    <p className="text-[13px] font-sans leading-relaxed flex-1" style={{ color: 'hsl(var(--lingnan-ink) / 0.5)' }}>{ms.description}</p>
+                    <p className="text-[13px] font-sans leading-relaxed flex-1" style={{ color: 'hsl(var(--lingnan-ink) / 0.6)' }}>{ms.description}</p>
                     <div className="flex gap-2 mt-4">
                       {ms.highlights.map(h => (
                         <span key={h} className="text-[9px] font-sans px-2 py-1 rounded-full" style={{
@@ -282,9 +282,9 @@ export function CollectionSection() {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.7 }}
           className="flex items-center gap-8 mt-12 pt-8"
-          style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}
+          style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}
         >
-          <span className="text-[10px] font-sans tracking-wider" style={{ color: 'hsl(var(--lingnan-ink) / 0.25)' }}>
+          <span className="text-[10px] font-sans tracking-wider" style={{ color: 'hsl(var(--lingnan-ink) / 0.35)' }}>
             工具
           </span>
           {[
@@ -293,7 +293,7 @@ export function CollectionSection() {
             { icon: <Search size={13} />, label: '全文检索' },
             { icon: <Layers size={13} />, label: '批注标记' },
           ].map(tool => (
-            <button key={tool.label} className="flex items-center gap-2 text-[11px] font-sans transition-all hover:opacity-70" style={{ color: 'hsl(var(--lingnan-ink) / 0.45)' }}>
+            <button key={tool.label} className="flex items-center gap-2 text-[11px] font-sans transition-all hover:opacity-70" style={{ color: 'hsl(var(--lingnan-ink) / 0.55)' }}>
               {tool.icon}
               <span>{tool.label}</span>
             </button>

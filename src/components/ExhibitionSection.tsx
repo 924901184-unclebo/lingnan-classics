@@ -36,7 +36,7 @@ export function ExhibitionSection() {
       id="exhibition"
       ref={ref}
       className="relative py-32 px-6 lg:px-12"
-      style={{ background: 'linear-gradient(180deg, #f6f3ed 0%, #f0ece4 50%, #f6f3ed 100%)' }}
+      style={{ background: '#eae5db' }}
     >
       <div className="relative z-10 max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto">
         <motion.div
@@ -69,7 +69,7 @@ export function ExhibitionSection() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.15 * i }}
               className="group cursor-pointer rounded-sm overflow-hidden transition-all duration-500 hover:translate-y-[-4px]"
-              style={{ border: '1px solid rgba(0,0,0,0.06)' }}
+              style={{ border: '1px solid rgba(0,0,0,0.1)' }}
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img
@@ -84,8 +84,8 @@ export function ExhibitionSection() {
                 <div className="absolute top-3 left-3">
                   <span className="text-[10px] font-sans px-2 py-1 rounded-sm" style={{
                     background: exhibition.tag === '正在展出' ? 'rgba(158, 43, 37, 0.8)' : 'rgba(0,0,0,0.6)',
-                    color: 'hsl(var(--lingnan-ink) / 0.85)',
-                    border: '1px solid rgba(0,0,0,0.06)',
+                    color: 'rgba(246,243,237,0.95)',
+                    border: '1px solid rgba(0,0,0,0.1)',
                   }}>
                     {exhibition.tag}
                   </span>
@@ -96,8 +96,8 @@ export function ExhibitionSection() {
                   </h3>
                 </div>
               </div>
-              <div className="p-4" style={{ background: 'rgba(255,255,255,0.7)' }}>
-                <p className="text-[11px] font-sans leading-relaxed" style={{ color: 'hsl(var(--lingnan-ink) / 0.35)' }}>
+              <div className="p-4" style={{ background: 'rgba(255,255,255,0.9)' }}>
+                <p className="text-[11px] font-sans leading-relaxed" style={{ color: 'hsl(var(--lingnan-ink) / 0.5)' }}>
                   {exhibition.desc}
                 </p>
                 <div className="mt-3 text-[10px] font-sans" style={{ color: 'rgba(201,169,110,0.5)' }}>
