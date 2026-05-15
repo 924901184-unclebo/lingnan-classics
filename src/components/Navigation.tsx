@@ -55,7 +55,7 @@ export function Navigation() {
               className="font-serif text-base tracking-wider transition-colors duration-500"
               style={{ color: textColor }}
             >
-              岭南古籍数字化平台
+              岭南古籍文献语料数据人工智能平台
             </span>
           </a>
 

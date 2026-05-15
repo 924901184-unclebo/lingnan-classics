@@ -26,7 +26,7 @@ export function Footer() {
                   岭南
                 </div>
                 <span className="font-serif text-lg tracking-wider" style={{ color: 'rgba(246,243,237,0.7)' }}>
-                  岭南古籍数字化平台
+                  岭南古籍文献语料数据人工智能平台
                 </span>
               </div>
               <p className="text-sm font-sans leading-relaxed max-w-[360px]" style={{ color: 'rgba(246,243,237,0.3)' }}>
@@ -68,7 +68,7 @@ export function Footer() {
 
           <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-[11px] font-sans" style={{ color: 'rgba(246,243,237,0.2)' }}>
-              © 2025 岭南古籍数字化平台 · 粤ICP备XXXXXXXX号
+              © 2025 岭南古籍文献语料数据人工智能平台 · 粤ICP备XXXXXXXX号
             </p>
             <div className="flex items-center gap-6">
               {['隐私政策', '使用条款', '开放API'].map(link => (

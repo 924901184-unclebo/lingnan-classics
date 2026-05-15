@@ -187,14 +187,14 @@ export function HeroSection() {
             variants={titleVariants}
             initial="hidden"
             animate={isLoaded ? 'visible' : 'hidden'}
-            className="font-serif leading-none tracking-[0.08em] mb-4"
+            className="font-serif leading-[1.2] tracking-[0.06em] mb-4"
             style={{
-              fontSize: 'clamp(3.5rem, 12vw, 10rem)',
+              fontSize: 'clamp(2rem, 6vw, 5rem)',
               color: 'hsl(var(--lingnan-ink))',
               textShadow: '0 2px 4px rgba(0,0,0,0.03)',
             }}
           >
-            岭南古籍
+            岭南古籍文献语料数据人工智能平台
           </motion.h1>
 
           {/* English Subtitle */}
@@ -205,18 +205,7 @@ export function HeroSection() {
             className="font-sans text-xs md:text-sm tracking-[0.35em] uppercase mb-6"
             style={{ color: 'hsl(var(--lingnan-ink) / 0.4)' }}
           >
-            Lingnan Ancient Classics
-          </motion.p>
-
-          {/* Chinese Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            transition={{ duration: 1, delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="font-serif text-lg md:text-2xl tracking-[0.15em] mb-3"
-            style={{ color: 'hsl(var(--lingnan-teal))' }}
-          >
-            数字化平台
+            Lingnan Ancient Classics AI Platform
           </motion.p>
 
           {/* Description */}
