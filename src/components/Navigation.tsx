@@ -20,11 +20,11 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Light theme - dark text on light bg, switches when scrolled
-  const textColor = scrolled ? 'hsl(0 0% 10% / 0.8)' : 'rgba(246,243,237,0.9)'
-  const navLinkColor = scrolled ? 'hsl(0 0% 10% / 0.5)' : 'rgba(246,243,237,0.6)'
-  const sealBorderColor = scrolled ? 'hsl(2 63% 38% / 0.5)' : 'rgba(201,169,110,0.6)'
-  const sealTextColor = scrolled ? 'hsl(2 63% 38% / 0.7)' : 'rgba(201,169,110,0.8)'
+  // Light theme — always dark text on light bg
+  const textColor = 'hsl(0 0% 10% / 0.8)'
+  const navLinkColor = 'hsl(0 0% 10% / 0.5)'
+  const sealBorderColor = 'hsl(2 63% 38% / 0.5)'
+  const sealTextColor = 'hsl(2 63% 38% / 0.7)'
 
   return (
     <>
