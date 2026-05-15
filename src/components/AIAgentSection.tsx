@@ -56,8 +56,16 @@ export function AIAgentSection() {
       id="ai-agent"
       ref={ref}
       className="relative py-32 px-6 lg:px-12"
-      style={{ background: '#f6f3ed' }}
+      style={{ background: '#FFF9E8' }}
     >
+      {/* Soft radial glow */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-50"
+        style={{
+          backgroundImage: 'radial-gradient(ellipse at 70% 30%, rgba(138,174,198,0.08) 0%, transparent 50%)',
+        }}
+      />
+
       <div className="relative z-10 max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left: Description */}
@@ -68,15 +76,15 @@ export function AIAgentSection() {
             className="lg:col-span-5"
           >
             <div className="flex items-center gap-3 mb-3">
-              <span className="text-xs tracking-[0.3em] uppercase font-sans" style={{ color: 'rgba(201, 169, 110, 0.6)' }}>
+              <span className="text-xs tracking-[0.3em] uppercase font-sans" style={{ color: '#5A7D9A' }}>
                 AI AGENT
               </span>
-              <div className="h-px flex-1 max-w-[80px]" style={{ background: 'linear-gradient(90deg, rgba(201,169,110,0.4), transparent)' }} />
+              <div className="h-px flex-1 max-w-[80px]" style={{ background: 'linear-gradient(90deg, #5A7D9A, transparent)' }} />
             </div>
-            <h2 className="font-serif text-3xl md:text-5xl" style={{ color: 'hsl(var(--lingnan-ink))' }}>
+            <h2 className="font-serif text-3xl md:text-5xl" style={{ color: '#3C2F20' }}>
               古籍智能体
             </h2>
-            <p className="mt-4 font-sans leading-relaxed text-sm" style={{ color: 'hsl(var(--lingnan-ink) / 0.5)' }}>
+            <p className="mt-4 font-sans leading-relaxed text-sm" style={{ color: '#5A4A3A' }}>
               基于岭南古籍语料微调的专属AI，支持文言文断句、
               白话翻译、历史考据与知识图谱关联推理。
             </p>
@@ -91,17 +99,17 @@ export function AIAgentSection() {
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4 group">
                   <div className="shrink-0 w-8 h-8 rounded-sm flex items-center justify-center" style={{
-                    background: 'rgba(42, 84, 99, 0.15)',
-                    border: '1px solid rgba(42, 84, 99, 0.2)',
-                    color: 'rgba(42, 84, 99, 0.8)',
+                    background: 'rgba(90,125,154,0.1)',
+                    border: '1px solid rgba(90,125,154,0.2)',
+                    color: '#5A7D9A',
                   }}>
                     {item.icon}
                   </div>
                   <div>
-                    <h4 className="font-sans text-sm font-medium" style={{ color: 'hsl(var(--lingnan-ink) / 0.75)' }}>
+                    <h4 className="font-sans text-sm font-medium" style={{ color: '#3C2F20' }}>
                       {item.title}
                     </h4>
-                    <p className="text-[11px] font-sans mt-0.5" style={{ color: 'hsl(var(--lingnan-ink) / 0.45)' }}>
+                    <p className="text-[11px] font-sans mt-0.5" style={{ color: '#7A6A5A' }}>
                       {item.desc}
                     </p>
                   </div>
@@ -117,16 +125,16 @@ export function AIAgentSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="lg:col-span-7 rounded-sm overflow-hidden"
             style={{
-              background: 'rgba(255,255,255,0.85)',
-              border: '1px solid rgba(0,0,0,0.1)',
-              backdropFilter: 'blur(8px)',
+              background: 'rgba(255,255,255,0.9)',
+              border: '1px solid #D4B89B',
+              boxShadow: '0 8px 32px rgba(60,47,32,0.08)',
             }}
           >
             {/* Chat Header */}
-            <div className="px-5 py-4 flex items-center gap-3" style={{ borderBottom: '1px solid rgba(0,0,0,0.1)' }}>
-              <div className="w-2 h-2 rounded-full animate-pulse-soft" style={{ background: 'rgba(100, 200, 120, 0.7)' }} />
-              <span className="font-serif text-sm" style={{ color: 'hsl(var(--lingnan-ink) / 0.75)' }}>岭南古籍智能体</span>
-              <span className="text-[10px] font-sans ml-auto" style={{ color: 'hsl(var(--lingnan-ink) / 0.35)' }}>
+            <div className="px-5 py-4 flex items-center gap-3" style={{ borderBottom: '1px solid rgba(212,184,155,0.4)' }}>
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'rgba(100, 200, 120, 0.7)' }} />
+              <span className="font-serif text-sm" style={{ color: '#3C2F20' }}>岭南古籍智能体</span>
+              <span className="text-[10px] font-sans ml-auto" style={{ color: '#7A6A5A' }}>
                 <Sparkles size={10} className="inline mr-1" />
                 知识图谱 · 已就绪
               </span>
@@ -145,12 +153,12 @@ export function AIAgentSection() {
                     <div
                       className="max-w-[85%] px-4 py-3 rounded-sm text-[13px] font-sans leading-relaxed"
                       style={msg.role === 'user' ? {
-                        background: 'rgba(42, 84, 99, 0.6)',
-                        color: 'hsl(var(--lingnan-ink) / 0.85)',
+                        background: '#3A5A7A',
+                        color: '#FFF9E8',
                       } : {
-                        background: 'rgba(0,0,0,0.04)',
-                        color: 'hsl(var(--lingnan-ink) / 0.65)',
-                        border: '1px solid rgba(0,0,0,0.04)',
+                        background: 'rgba(245,233,211,0.6)',
+                        color: '#3C2F20',
+                        border: '1px solid rgba(212,184,155,0.3)',
                       }}
                     >
                       {msg.content}
@@ -161,11 +169,11 @@ export function AIAgentSection() {
 
               {isTyping && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-start">
-                  <div className="px-4 py-3 rounded-sm" style={{ background: 'rgba(0,0,0,0.04)' }}>
+                  <div className="px-4 py-3 rounded-sm" style={{ background: 'rgba(245,233,211,0.6)', border: '1px solid rgba(212,184,155,0.3)' }}>
                     <div className="flex gap-1.5">
                       {[0, 1, 2].map(i => (
                         <span key={i} className="w-1.5 h-1.5 rounded-full animate-bounce" style={{
-                          background: 'rgba(42, 84, 99, 0.6)',
+                          background: '#5A7D9A',
                           animationDelay: `${i * 150}ms`,
                         }} />
                       ))}
@@ -177,7 +185,7 @@ export function AIAgentSection() {
             </div>
 
             {/* Preset Questions */}
-            <div className="px-5 py-2" style={{ borderTop: '1px solid rgba(0,0,0,0.04)' }}>
+            <div className="px-5 py-2" style={{ borderTop: '1px solid rgba(212,184,155,0.3)' }}>
               <div className="flex gap-2 overflow-x-auto pb-2">
                 {PRESET_QUESTIONS.map((q) => (
                   <button
@@ -185,9 +193,9 @@ export function AIAgentSection() {
                     onClick={() => sendMessage(q)}
                     className="shrink-0 text-[11px] font-sans px-3 py-1.5 rounded-sm transition-all hover:translate-y-[-1px]"
                     style={{
-                      color: 'hsl(var(--lingnan-ink) / 0.45)',
-                      border: '1px solid rgba(0,0,0,0.08)',
-                      background: 'rgba(0,0,0,0.02)',
+                      color: '#5A4A3A',
+                      border: '1px solid #D4B89B',
+                      background: 'rgba(255,232,194,0.2)',
                     }}
                   >
                     {q}
@@ -197,8 +205,8 @@ export function AIAgentSection() {
             </div>
 
             {/* Input */}
-            <div className="px-5 py-3 flex items-center gap-3" style={{ borderTop: '1px solid rgba(0,0,0,0.1)' }}>
-              <BookOpen size={16} style={{ color: 'hsl(var(--lingnan-ink) / 0.2)' }} />
+            <div className="px-5 py-3 flex items-center gap-3" style={{ borderTop: '1px solid rgba(212,184,155,0.4)' }}>
+              <BookOpen size={16} style={{ color: '#7A6A5A' }} />
               <input
                 type="text"
                 value={input}
@@ -206,12 +214,12 @@ export function AIAgentSection() {
                 onKeyDown={(e) => e.key === 'Enter' && sendMessage(input)}
                 placeholder="向智能体提问..."
                 className="flex-1 bg-transparent text-sm font-sans outline-none placeholder:opacity-40"
-                style={{ color: 'hsl(var(--lingnan-ink) / 0.75)' }}
+                style={{ color: '#3C2F20' }}
               />
               <button
                 onClick={() => sendMessage(input)}
                 className="transition-opacity hover:opacity-70"
-                style={{ color: 'rgba(42, 84, 99, 0.8)' }}
+                style={{ color: '#5A7D9A' }}
               >
                 <Send size={16} />
               </button>

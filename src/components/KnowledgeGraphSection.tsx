@@ -19,11 +19,11 @@ interface GraphEdge {
 }
 
 const NODE_COLORS: Record<string, { fill: string; glow: string }> = {
-  person: { fill: 'rgba(100, 180, 200, 0.9)', glow: 'rgba(100, 180, 200, 0.3)' },
-  book: { fill: 'rgba(130, 190, 210, 0.9)', glow: 'rgba(130, 190, 210, 0.3)' },
-  place: { fill: 'rgba(201, 169, 110, 0.9)', glow: 'rgba(201, 169, 110, 0.3)' },
-  clan: { fill: 'rgba(140, 140, 150, 0.9)', glow: 'rgba(140, 140, 150, 0.3)' },
-  event: { fill: 'rgba(200, 100, 90, 0.85)', glow: 'rgba(200, 100, 90, 0.3)' },
+  person: { fill: '#8AAEC6', glow: 'rgba(138,174,198,0.3)' },
+  book: { fill: '#C4D8E6', glow: 'rgba(196,216,230,0.3)' },
+  place: { fill: '#FFE8C2', glow: 'rgba(255,232,194,0.3)' },
+  clan: { fill: '#D4B89B', glow: 'rgba(212,184,155,0.3)' },
+  event: { fill: '#5A7D9A', glow: 'rgba(90,125,154,0.3)' },
 }
 
 const NODES: GraphNode[] = [
@@ -102,7 +102,7 @@ export function KnowledgeGraphSection() {
         const py = (Math.cos(time * 0.0004 + i * 1.7) * 0.5 + 0.5) * h
         ctx.beginPath()
         ctx.arc(px, py, 1.5, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(100, 180, 200, 0.2)'
+        ctx.fillStyle = 'rgba(138, 174, 198, 0.2)'
         ctx.fill()
       }
 
@@ -129,16 +129,16 @@ export function KnowledgeGraphSection() {
         ctx.quadraticCurveTo(midX, midY, tx, ty)
 
         if (isActive) {
-          ctx.strokeStyle = 'rgba(201, 169, 110, 0.7)'
+          ctx.strokeStyle = '#FFE8C2'
           ctx.lineWidth = 2
           ctx.setLineDash([8, 4])
           ctx.lineDashOffset = -time * 0.02
         } else if (isHoverEdge) {
-          ctx.strokeStyle = 'rgba(100, 180, 200, 0.5)'
+          ctx.strokeStyle = 'rgba(138, 174, 198, 0.5)'
           ctx.lineWidth = 1.5
           ctx.setLineDash([])
         } else {
-          ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)'
+          ctx.strokeStyle = 'rgba(196, 216, 230, 0.1)'
           ctx.lineWidth = 1
           ctx.setLineDash([])
         }
@@ -149,7 +149,7 @@ export function KnowledgeGraphSection() {
         // Edge label for active
         if (isActive) {
           ctx.font = '10px "Noto Sans SC", sans-serif'
-          ctx.fillStyle = 'rgba(201, 169, 110, 0.8)'
+          ctx.fillStyle = '#FFE8C2'
           ctx.textAlign = 'center'
           ctx.textBaseline = 'middle'
           ctx.fillText(edge.label, midX, midY - 8)
@@ -190,7 +190,7 @@ export function KnowledgeGraphSection() {
           const pulse = Math.sin(time * 0.003) * 0.3 + 0.7
           ctx.beginPath()
           ctx.arc(nx, ny, drawRadius + 5, 0, Math.PI * 2)
-          ctx.strokeStyle = `rgba(201, 169, 110, ${pulse * 0.6})`
+          ctx.strokeStyle = `rgba(255, 232, 194, ${pulse * 0.6})`
           ctx.lineWidth = 1.5
           ctx.stroke()
         }
@@ -204,8 +204,8 @@ export function KnowledgeGraphSection() {
 
         // Subtle border
         ctx.strokeStyle = isSelected
-          ? 'rgba(201, 169, 110, 0.8)'
-          : 'rgba(255, 255, 255, 0.2)'
+          ? '#FFE8C2'
+          : 'rgba(196, 216, 230, 0.25)'
         ctx.lineWidth = isSelected ? 2 : 1
         ctx.stroke()
 
@@ -213,7 +213,7 @@ export function KnowledgeGraphSection() {
         ctx.font = `${node.radius > 30 ? 13 : 11}px "Noto Serif SC", serif`
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
-        ctx.fillStyle = `rgba(246, 243, 237, ${alpha * 0.95})`
+        ctx.fillStyle = `rgba(45, 58, 74, ${alpha * 0.95})`
         ctx.fillText(node.label, nx, ny)
 
         ctx.globalAlpha = 1
@@ -271,13 +271,13 @@ export function KnowledgeGraphSection() {
       id="knowledge-graph"
       ref={ref}
       className="relative py-32 px-6 lg:px-12 overflow-hidden"
-      style={{ background: '#152228' }}
+      style={{ background: '#2D3A4A' }}
     >
       {/* Subtle grid overlay */}
       <div
         className="absolute inset-0 opacity-[0.04]"
         style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(196,216,230,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(196,216,230,0.15) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
         }}
       />
@@ -291,15 +291,15 @@ export function KnowledgeGraphSection() {
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-3">
-            <span className="text-xs tracking-[0.3em] uppercase font-sans" style={{ color: 'rgba(201, 169, 110, 0.6)' }}>
+            <span className="text-xs tracking-[0.3em] uppercase font-sans" style={{ color: '#8AAEC6' }}>
               KNOWLEDGE GRAPH
             </span>
-            <div className="h-px flex-1 max-w-[120px]" style={{ background: 'linear-gradient(90deg, rgba(201,169,110,0.4), transparent)' }} />
+            <div className="h-px flex-1 max-w-[120px]" style={{ background: 'linear-gradient(90deg, rgba(138,174,198,0.5), transparent)' }} />
           </div>
-          <h2 className="font-serif text-3xl md:text-5xl mt-2" style={{ color: 'rgba(246,243,237,0.9)' }}>
+          <h2 className="font-serif text-3xl md:text-5xl mt-2" style={{ color: '#FFF9E8' }}>
             岭南知识图谱
           </h2>
-          <p className="mt-4 max-w-[550px] font-sans leading-relaxed text-sm" style={{ color: 'rgba(246,243,237,0.4)' }}>
+          <p className="mt-4 max-w-[550px] font-sans leading-relaxed text-sm" style={{ color: 'rgba(196,216,230,0.5)' }}>
             以人物、典籍、宗族、地域四维度构建岭南文化知识网络。
             点击节点探索千年文脉的深层关联与传承脉络。
           </p>
@@ -314,8 +314,8 @@ export function KnowledgeGraphSection() {
           className="relative rounded-sm overflow-hidden"
           style={{
             height: '520px',
-            border: '1px solid rgba(255,255,255,0.08)',
-            background: 'rgba(255,255,255,0.03)',
+            border: '1px solid rgba(138,174,198,0.12)',
+            background: 'rgba(196,216,230,0.04)',
           }}
         >
           <canvas
@@ -334,10 +334,10 @@ export function KnowledgeGraphSection() {
                   className="w-3 h-3 rounded-full border"
                   style={{
                     background: NODE_COLORS[type].fill,
-                    borderColor: 'rgba(255,255,255,0.1)',
+                    borderColor: 'rgba(196,216,230,0.2)',
                   }}
                 />
-                <span className="text-[10px] font-sans" style={{ color: 'rgba(246,243,237,0.4)' }}>
+                <span className="text-[10px] font-sans" style={{ color: 'rgba(196,216,230,0.5)' }}>
                   {config.label}
                 </span>
               </div>
@@ -353,8 +353,8 @@ export function KnowledgeGraphSection() {
                 exit={{ opacity: 0, x: 20, scale: 0.95 }}
                 className="absolute top-4 right-4 rounded-sm p-5 max-w-[260px]"
                 style={{
-                  background: 'rgba(21, 34, 40, 0.9)',
-                  border: '1px solid rgba(201, 169, 110, 0.25)',
+                  background: 'rgba(45, 58, 74, 0.92)',
+                  border: '1px solid rgba(255, 232, 194, 0.2)',
                   backdropFilter: 'blur(12px)',
                   boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
                 }}
@@ -364,11 +364,11 @@ export function KnowledgeGraphSection() {
                     className="w-2.5 h-2.5 rounded-full"
                     style={{ background: NODE_COLORS[selectedNode.type].fill }}
                   />
-                  <span className="text-[10px] font-sans" style={{ color: 'rgba(201,169,110,0.7)' }}>
+                  <span className="text-[10px] font-sans" style={{ color: '#FFE8C2' }}>
                     {typeConfig[selectedNode.type].label}
                   </span>
                 </div>
-                <div className="font-serif text-base mb-3" style={{ color: 'rgba(246,243,237,0.9)' }}>
+                <div className="font-serif text-base mb-3" style={{ color: '#FFF9E8' }}>
                   {selectedNode.label}
                 </div>
                 <div className="space-y-1.5">
@@ -376,11 +376,11 @@ export function KnowledgeGraphSection() {
                     const otherId = edge.source === selectedNode.id ? edge.target : edge.source
                     const other = NODES.find(n => n.id === otherId)
                     return (
-                      <div key={i} className="flex items-center gap-2 text-[11px] font-sans" style={{ color: 'rgba(246,243,237,0.45)' }}>
-                        <span style={{ color: 'rgba(201,169,110,0.6)' }}>—</span>
+                      <div key={i} className="flex items-center gap-2 text-[11px] font-sans" style={{ color: 'rgba(196,216,230,0.5)' }}>
+                        <span style={{ color: '#FFE8C2' }}>—</span>
                         <span>{edge.label}</span>
                         <span>→</span>
-                        <span style={{ color: 'rgba(246,243,237,0.75)' }}>{other?.label}</span>
+                        <span style={{ color: '#C4D8E6' }}>{other?.label}</span>
                       </div>
                     )
                   })}
@@ -396,7 +396,7 @@ export function KnowledgeGraphSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 pt-8"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
+          style={{ borderTop: '1px solid rgba(138,174,198,0.12)' }}
         >
           {[
             { number: '2,400+', label: '知识节点' },
@@ -405,10 +405,10 @@ export function KnowledgeGraphSection() {
             { number: '实时', label: '动态推理引擎' },
           ].map((stat) => (
             <div key={stat.label}>
-              <div className="font-serif text-xl" style={{ color: 'rgba(246,243,237,0.85)' }}>
+              <div className="font-serif text-xl" style={{ color: '#C4D8E6' }}>
                 {stat.number}
               </div>
-              <div className="text-[11px] font-sans mt-1" style={{ color: 'rgba(246,243,237,0.35)' }}>
+              <div className="text-[11px] font-sans mt-1" style={{ color: 'rgba(196,216,230,0.4)' }}>
                 {stat.label}
               </div>
             </div>

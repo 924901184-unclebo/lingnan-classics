@@ -5,55 +5,64 @@
 @layer base {
   :root {
     /* ═══════════════════════════════════════════
-       岭南古籍数字化平台 — 博物馆级设计系统
+       岭南古籍AI平台 — 古卷科技感设计系统
+       古籍泛黄质感 + 柔和光亮 + 科技感融合
        ═══════════════════════════════════════════ */
 
-    /* 核心色彩 — 岭南文化五色 */
-    --lingnan-teal: 193 37% 28%;       /* #2A5463 岭南青 — 主色 */
-    --lingnan-paper: 38 30% 95%;       /* #F6F3ED 宣纸白 — 背景 */
-    --lingnan-ink: 0 0% 10%;           /* #1A1A1A 墨黑 — 正文 */
-    --lingnan-vermilion: 2 63% 38%;    /* #9E2B25 印章朱红 — 强调 */
-    --lingnan-gold: 36 38% 60%;        /* #C9A96E 淡金 — 装饰 */
+    /* 主色 — 古籍泛黄基底 */
+    --paper: 35 63% 89%;              /* #F5E9D3 米纸黄 */
+    --paper-secondary: 30 48% 81%;    /* #E8D4B7 浅茶黄 */
+    --paper-border: 30 38% 72%;       /* #D4B89B 浅棕黄 */
 
-    /* 语义化设计Token */
-    --background: 38 30% 95%;
-    --foreground: 0 0% 10%;
-    --card: 38 25% 97%;
-    --card-foreground: 0 0% 10%;
-    --popover: 38 30% 95%;
-    --popover-foreground: 0 0% 10%;
-    --primary: 193 37% 28%;
-    --primary-foreground: 38 30% 95%;
-    --secondary: 38 20% 90%;
-    --secondary-foreground: 193 37% 28%;
-    --muted: 38 15% 92%;
-    --muted-foreground: 0 0% 40%;
-    --accent: 2 63% 38%;
-    --accent-foreground: 38 30% 95%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 38 20% 85%;
-    --input: 38 20% 88%;
-    --ring: 193 37% 28%;
+    /* 光亮与点缀色 */
+    --glow: 44 100% 95%;              /* #FFF9E8 柔光米白 */
+    --glow-gold: 35 100% 88%;         /* #FFE8C2 暖调浅金 */
+
+    /* 科技感辅助色 */
+    --tech: 205 26% 48%;              /* #5A7D9A 冷调浅蓝 */
+    --tech-deep: 210 35% 35%;         /* #3A5A7A 深冷蓝灰 */
+    --tech-glow: 205 35% 66%;         /* #8AAEC6 浅冰蓝 */
+    --tech-light: 205 38% 83%;        /* #C4D8E6 冰蓝白 */
+
+    /* 文本与中性色 */
+    --text-primary: 30 31% 18%;       /* #3C2F20 深棕黑 */
+    --text-secondary: 30 21% 29%;     /* #5A4A3A 暖棕灰 */
+    --text-muted: 30 15% 41%;         /* #7A6A5A 浅棕灰 */
+    --text-tech: 215 26% 23%;         /* #2D3A4A 冷调深灰 */
+
+    /* 语义化Token */
+    --background: 35 63% 89%;
+    --foreground: 30 31% 18%;
+    --card: 35 63% 93%;
+    --card-foreground: 30 31% 18%;
+    --primary: 205 26% 48%;
+    --primary-foreground: 44 100% 95%;
+    --secondary: 30 48% 81%;
+    --secondary-foreground: 30 31% 18%;
+    --muted: 30 38% 72%;
+    --muted-foreground: 30 15% 41%;
+    --accent: 35 100% 88%;
+    --accent-foreground: 30 31% 18%;
+    --border: 30 38% 72%;
+    --input: 30 48% 85%;
+    --ring: 205 26% 48%;
     --radius: 0.375rem;
 
     /* 渐变 */
-    --gradient-ink: linear-gradient(180deg, hsl(0 0% 10%) 0%, hsl(193 37% 20%) 100%);
-    --gradient-paper: linear-gradient(180deg, hsl(38 30% 95%) 0%, hsl(38 25% 90%) 100%);
-    --gradient-teal: linear-gradient(135deg, hsl(193 37% 28%) 0%, hsl(193 37% 38%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(0 0% 8% / 0.9) 0%, hsl(0 0% 8% / 0.4) 50%, transparent 100%);
-    --gradient-gold: linear-gradient(90deg, transparent 0%, hsl(36 38% 60% / 0.5) 50%, transparent 100%);
+    --gradient-paper: linear-gradient(180deg, #F5E9D3 0%, #E8D4B7 100%);
+    --gradient-tech: linear-gradient(135deg, #3A5A7A 0%, #5A7D9A 100%);
+    --gradient-glow: linear-gradient(90deg, transparent 0%, #FFE8C2 50%, transparent 100%);
+    --gradient-tech-glow: linear-gradient(90deg, transparent 0%, #8AAEC6 50%, transparent 100%);
 
     /* 阴影 */
-    --shadow-scroll: 0 2px 20px hsl(0 0% 0% / 0.05);
-    --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.04);
-    --shadow-elevated: 0 12px 40px hsl(0 0% 0% / 0.08);
-    --shadow-ink: 0 8px 32px hsl(193 37% 28% / 0.15);
+    --shadow-card: 0 4px 24px hsl(30 31% 18% / 0.06);
+    --shadow-elevated: 0 12px 40px hsl(30 31% 18% / 0.1);
+    --shadow-tech: 0 0 20px hsl(205 35% 66% / 0.3);
+    --shadow-glow: 0 0 12px hsl(35 100% 88% / 0.4);
 
     /* 过渡 */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 }
 
@@ -79,45 +88,30 @@
     letter-spacing: 0.02em;
   }
 
-  /* 自定义滚动条 — 博物馆级细节 */
+  /* 自定义滚动条 */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: hsl(var(--lingnan-paper));
+    background: #F5E9D3;
   }
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--lingnan-teal) / 0.3);
+    background: #D4B89B;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--lingnan-teal) / 0.5);
+    background: #5A7D9A;
   }
 }
 
 @layer components {
-  /* 水墨装饰线 */
+  /* 金色装饰线 */
   .ink-divider {
     position: relative;
     height: 1px;
-    background: var(--gradient-gold);
+    background: var(--gradient-glow);
     opacity: 0.6;
   }
-
-  .ink-divider::before,
-  .ink-divider::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: hsl(var(--lingnan-gold));
-    transform: translateY(-50%);
-  }
-
-  .ink-divider::before { left: 0; }
-  .ink-divider::after { right: 0; }
 
   /* 印章效果 */
   .seal-stamp {
@@ -125,8 +119,8 @@
     align-items: center;
     justify-content: center;
     padding: 8px 12px;
-    border: 2px solid hsl(var(--lingnan-vermilion));
-    color: hsl(var(--lingnan-vermilion));
+    border: 2px solid #D4B89B;
+    color: #5A4A3A;
     font-family: 'Noto Serif SC', serif;
     font-weight: 700;
     font-size: 0.75rem;
@@ -135,27 +129,22 @@
     opacity: 0.85;
   }
 
-  /* 古籍纸张纹理感 */
+  /* 宣纸纹理感 */
   .paper-texture {
     background-image:
-      radial-gradient(ellipse at 20% 50%, hsl(38 30% 92% / 0.5) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, hsl(36 38% 60% / 0.05) 0%, transparent 40%);
+      radial-gradient(ellipse at 20% 50%, hsl(35 63% 92% / 0.5) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, hsl(35 100% 88% / 0.08) 0%, transparent 40%);
   }
 
-  /* 水墨扩散效果 */
-  .ink-wash {
-    background: radial-gradient(
-      ellipse at center,
-      hsl(var(--lingnan-ink) / 0.8) 0%,
-      hsl(var(--lingnan-ink) / 0.4) 30%,
-      transparent 70%
-    );
+  /* 科技光效 */
+  .tech-glow {
+    box-shadow: 0 0 20px hsl(205 35% 66% / 0.25), inset 0 1px 0 hsl(205 38% 83% / 0.2);
   }
 
   /* 文博级卡片 */
   .museum-card {
     background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
+    border: 1px solid #D4B89B;
     box-shadow: var(--shadow-card);
     transition: var(--transition-smooth);
   }
@@ -163,22 +152,7 @@
   .museum-card:hover {
     box-shadow: var(--shadow-elevated);
     transform: translateY(-2px);
-  }
-
-  /* 章节标题装饰 */
-  .section-title {
-    position: relative;
-    display: inline-block;
-  }
-
-  .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 40px;
-    height: 2px;
-    background: hsl(var(--lingnan-vermilion));
+    border-color: #5A7D9A;
   }
 }
 

@@ -19,11 +19,11 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Dark hero → light text; scrolled → dark text on light bg
-  const textColor = scrolled ? 'hsl(0 0% 10% / 0.8)' : 'rgba(246,243,237,0.85)'
-  const navLinkColor = scrolled ? 'hsl(0 0% 10% / 0.5)' : 'rgba(246,243,237,0.55)'
-  const sealBorderColor = scrolled ? 'hsl(2 63% 38% / 0.5)' : 'rgba(201,169,110,0.6)'
-  const sealTextColor = scrolled ? 'hsl(2 63% 38% / 0.7)' : 'rgba(201,169,110,0.8)'
+  // Dark hero → light text; scrolled → dark text on paper bg
+  const textColor = scrolled ? '#3C2F20' : '#FFF9E8'
+  const navLinkColor = scrolled ? '#5A4A3A' : 'rgba(196,216,230,0.6)'
+  const sealBorderColor = scrolled ? '#D4B89B' : '#FFE8C2'
+  const sealTextColor = scrolled ? '#5A4A3A' : '#FFE8C2'
 
   return (
     <>
@@ -33,9 +33,9 @@ export function Navigation() {
         transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
         style={{
-          background: scrolled ? 'rgba(246, 243, 237, 0.92)' : 'transparent',
+          background: scrolled ? 'rgba(245, 233, 211, 0.92)' : 'transparent',
           backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(0,0,0,0.06)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(212,184,155,0.4)' : 'none',
         }}
       >
         <nav className="max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto px-6 lg:px-12 2xl:px-16 h-20 flex items-center justify-between">
@@ -89,7 +89,7 @@ export function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-0 z-40 pt-24 px-8"
-            style={{ background: 'rgba(246, 243, 237, 0.98)', backdropFilter: 'blur(20px)' }}
+            style={{ background: 'rgba(245, 233, 211, 0.98)', backdropFilter: 'blur(20px)' }}
           >
             <ul className="flex flex-col gap-6">
               {navItems.map((item) => (
@@ -98,7 +98,7 @@ export function Navigation() {
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
                     className="font-serif text-2xl"
-                    style={{ color: 'hsl(0 0% 10% / 0.8)' }}
+                    style={{ color: '#3C2F20' }}
                   >
                     {item.label}
                   </a>

@@ -13,7 +13,7 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen" style={{ background: '#f6f3ed' }}>
+    <div className="min-h-screen" style={{ background: '#F5E9D3' }}>
       <Navigation />
       <main>
         <HeroSection />

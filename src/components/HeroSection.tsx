@@ -21,7 +21,7 @@ function TypingDots() {
         <motion.div
           key={i}
           className="w-1.5 h-1.5 rounded-full"
-          style={{ background: 'rgba(201,169,110,0.6)' }}
+          style={{ background: '#8AAEC6' }}
           animate={{ opacity: [0.3, 1, 0.3] }}
           transition={{ duration: 1, delay: i * 0.2, repeat: Infinity }}
         />
@@ -64,7 +64,7 @@ export function HeroSection() {
     <section
       ref={containerRef}
       className="relative min-h-screen overflow-hidden"
-      style={{ background: '#1a1410' }}
+      style={{ background: '#2A2218' }}
     >
       {/* Background image — positioned in lower portion */}
       <div className="absolute inset-x-0 bottom-0 h-[65%]">
@@ -73,7 +73,7 @@ export function HeroSection() {
           alt=""
           className="w-full h-full object-cover object-center"
           initial={{ scale: 1.05, opacity: 0 }}
-          animate={isLoaded ? { scale: 1, opacity: 0.7 } : { scale: 1.05, opacity: 0 }}
+          animate={isLoaded ? { scale: 1, opacity: 0.65 } : { scale: 1.05, opacity: 0 }}
           transition={{ duration: 2, ease: [0.25, 0.46, 0.45, 0.94] }}
           style={{
             transform: `translateY(${scrollProgress * 40}px)`,
@@ -83,7 +83,7 @@ export function HeroSection() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'linear-gradient(180deg, #1a1410 0%, rgba(26,20,16,0.4) 40%, rgba(26,20,16,0.2) 70%, rgba(26,20,16,0.6) 100%)',
+            background: 'linear-gradient(180deg, #2A2218 0%, rgba(42,34,24,0.4) 40%, rgba(42,34,24,0.15) 70%, rgba(42,34,24,0.5) 100%)',
           }}
         />
       </div>
@@ -92,15 +92,15 @@ export function HeroSection() {
       <div
         className="absolute inset-x-0 top-0 h-[45%] pointer-events-none"
         style={{
-          background: 'linear-gradient(180deg, #1a1410 0%, #1a1410 60%, transparent 100%)',
+          background: 'linear-gradient(180deg, #2A2218 0%, #2A2218 60%, transparent 100%)',
         }}
       />
 
-      {/* Warm vignette */}
+      {/* Warm vignette with tech tint */}
       <div
         className="absolute inset-0 pointer-events-none z-10"
         style={{
-          background: 'radial-gradient(ellipse 80% 70% at 50% 55%, transparent 30%, rgba(26,20,16,0.7) 100%)',
+          background: 'radial-gradient(ellipse 80% 70% at 50% 55%, transparent 30%, rgba(42,34,24,0.7) 100%)',
         }}
       />
 
@@ -112,7 +112,7 @@ export function HeroSection() {
           animate={isLoaded ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
           className="w-16 h-[1px] mb-6"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.6), transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, #FFE8C2, transparent)' }}
         />
 
         {/* Main Title */}
@@ -123,7 +123,7 @@ export function HeroSection() {
           className="font-serif text-center leading-[1.3] tracking-[0.06em]"
           style={{
             fontSize: 'clamp(1.8rem, 5vw, 3.8rem)',
-            color: 'rgba(246,243,237,0.95)',
+            color: '#FFF9E8',
             textShadow: '0 2px 20px rgba(0,0,0,0.5)',
           }}
         >
@@ -138,7 +138,7 @@ export function HeroSection() {
           animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.8 }}
           className="font-sans text-[11px] md:text-xs tracking-[0.35em] uppercase mt-4 text-center"
-          style={{ color: 'rgba(246,243,237,0.3)' }}
+          style={{ color: 'rgba(196,216,230,0.4)' }}
         >
           LINGNAN ANCIENT CLASSICS AI PLATFORM
         </motion.p>
@@ -150,24 +150,24 @@ export function HeroSection() {
           transition={{ duration: 1, delay: 1.2 }}
           className="mt-10 w-full max-w-[560px] rounded-lg overflow-hidden backdrop-blur-md"
           style={{
-            background: 'rgba(26, 20, 16, 0.45)',
-            border: '1px solid rgba(201,169,110,0.15)',
-            boxShadow: '0 16px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04)',
+            background: 'rgba(45, 58, 74, 0.45)',
+            border: '1px solid rgba(138,174,198,0.2)',
+            boxShadow: '0 16px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(196,216,230,0.06)',
           }}
         >
           {/* Panel Header */}
           <div
             className="flex items-center justify-between px-5 py-3"
-            style={{ borderBottom: '1px solid rgba(201,169,110,0.1)' }}
+            style={{ borderBottom: '1px solid rgba(138,174,198,0.12)' }}
           >
             <div className="flex items-center gap-2">
-              <Sparkles size={12} style={{ color: 'rgba(201,169,110,0.7)' }} />
-              <span className="font-serif text-xs" style={{ color: 'rgba(246,243,237,0.7)' }}>
+              <Sparkles size={12} style={{ color: '#8AAEC6' }} />
+              <span className="font-serif text-xs" style={{ color: '#C4D8E6' }}>
                 古籍智能体
               </span>
               <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: 'rgba(100,200,120,0.7)' }} />
             </div>
-            <span className="text-[9px] font-sans" style={{ color: 'rgba(246,243,237,0.25)' }}>
+            <span className="text-[9px] font-sans" style={{ color: 'rgba(196,216,230,0.35)' }}>
               知识图谱 · 已就绪
             </span>
           </div>
@@ -184,9 +184,9 @@ export function HeroSection() {
                 <div
                   className="max-w-[80%] px-3.5 py-2.5 rounded-lg text-[12px] font-sans leading-relaxed"
                   style={{
-                    background: 'rgba(42, 84, 99, 0.4)',
-                    border: '1px solid rgba(42, 84, 99, 0.5)',
-                    color: 'rgba(246,243,237,0.9)',
+                    background: 'rgba(90,125,154,0.35)',
+                    border: '1px solid rgba(90,125,154,0.5)',
+                    color: '#FFF9E8',
                   }}
                 >
                   {DEMO_CONVERSATION[0].text}
@@ -203,7 +203,7 @@ export function HeroSection() {
               >
                 <div
                   className="inline-flex px-3.5 py-2.5 rounded-lg"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}
+                  style={{ background: 'rgba(196,216,230,0.06)', border: '1px solid rgba(196,216,230,0.1)' }}
                 >
                   <TypingDots />
                 </div>
@@ -219,13 +219,13 @@ export function HeroSection() {
                 <div
                   className="max-w-[90%] px-3.5 py-2.5 rounded-lg text-[12px] font-sans leading-relaxed"
                   style={{
-                    background: 'rgba(255,255,255,0.04)',
-                    border: '1px solid rgba(255,255,255,0.06)',
-                    color: 'rgba(246,243,237,0.7)',
+                    background: 'rgba(196,216,230,0.06)',
+                    border: '1px solid rgba(196,216,230,0.1)',
+                    color: 'rgba(255,249,232,0.75)',
                   }}
                 >
                   {DEMO_CONVERSATION[1].text}
-                  <span className="block mt-1.5 text-[10px]" style={{ color: 'rgba(201,169,110,0.5)' }}>
+                  <span className="block mt-1.5 text-[10px]" style={{ color: 'rgba(255,232,194,0.6)' }}>
                     📎 引自《白沙子全集》卷二
                   </span>
                 </div>
@@ -239,10 +239,10 @@ export function HeroSection() {
               {PRESET_QUESTIONS.map(q => (
                 <span
                   key={q}
-                  className="text-[10px] font-sans px-2.5 py-1 rounded-full cursor-pointer transition-colors hover:bg-[rgba(201,169,110,0.1)]"
+                  className="text-[10px] font-sans px-2.5 py-1 rounded-full cursor-pointer transition-colors hover:bg-[rgba(138,174,198,0.12)]"
                   style={{
-                    border: '1px solid rgba(201,169,110,0.15)',
-                    color: 'rgba(246,243,237,0.45)',
+                    border: '1px solid rgba(138,174,198,0.2)',
+                    color: 'rgba(196,216,230,0.5)',
                   }}
                 >
                   {q}
@@ -254,14 +254,14 @@ export function HeroSection() {
             <div
               className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg"
               style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.08)',
+                background: 'rgba(196,216,230,0.04)',
+                border: '1px solid rgba(196,216,230,0.1)',
               }}
             >
-              <span className="text-[12px] font-sans flex-1" style={{ color: 'rgba(246,243,237,0.25)' }}>
+              <span className="text-[12px] font-sans flex-1" style={{ color: 'rgba(196,216,230,0.3)' }}>
                 向古籍智能体提问...
               </span>
-              <Send size={13} style={{ color: 'rgba(201,169,110,0.4)' }} />
+              <Send size={13} style={{ color: '#8AAEC6' }} />
             </div>
           </div>
         </motion.div>
@@ -274,18 +274,18 @@ export function HeroSection() {
         transition={{ delay: 2.5 }}
         className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
       >
-        <span className="text-[10px] font-sans tracking-[0.25em]" style={{ color: 'rgba(246,243,237,0.25)' }}>
+        <span className="text-[10px] font-sans tracking-[0.25em]" style={{ color: 'rgba(196,216,230,0.3)' }}>
           SCROLL
         </span>
         <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}>
-          <ChevronDown size={16} style={{ color: 'rgba(246,243,237,0.25)' }} />
+          <ChevronDown size={16} style={{ color: 'rgba(196,216,230,0.3)' }} />
         </motion.div>
       </motion.div>
 
-      {/* Bottom gradient transition */}
+      {/* Bottom gradient transition to Knowledge Graph */}
       <div
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-30"
-        style={{ background: 'linear-gradient(180deg, transparent 0%, #152228 100%)' }}
+        style={{ background: 'linear-gradient(180deg, transparent 0%, #2D3A4A 100%)' }}
       />
     </section>
   )
