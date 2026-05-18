@@ -5,60 +5,56 @@
 @layer base {
   :root {
     /* ═══════════════════════════════════════════
-       岭南古籍AI平台 — 古卷科技感设计系统
-       古籍泛黄质感 + 柔和光亮 + 科技感融合
+       岭南古籍AI平台 — 云山水墨设计系统
+       云山月白 · 古墙浅灰 · 墨韵深灰 · 岩炭黑
        ═══════════════════════════════════════════ */
 
-    /* 主色 — 古籍泛黄基底 */
-    --paper: 35 63% 89%;              /* #F5E9D3 米纸黄 */
-    --paper-secondary: 30 48% 81%;    /* #E8D4B7 浅茶黄 */
-    --paper-border: 30 38% 72%;       /* #D4B89B 浅棕黄 */
+    /* 核心四色 */
+    --cloud: 30 14% 95%;              /* #F5F3EF 云山月白 */
+    --wall: 30 12% 89%;               /* #E8E4DD 古墙浅灰 */
+    --ink: 20 5% 25%;                 /* #44403C 墨韵深灰 */
+    --charcoal: 25 6% 15%;            /* #2C2925 岩炭黑 */
 
-    /* 光亮与点缀色 */
-    --glow: 44 100% 95%;              /* #FFF9E8 柔光米白 */
-    --glow-gold: 35 100% 88%;         /* #FFE8C2 暖调浅金 */
+    /* 辅助灰阶 */
+    --stone: 25 6% 72%;               /* #B5B0A8 石灰 */
+    --mist: 30 8% 82%;                /* #D4CFC7 雾色 */
 
-    /* 科技感辅助色 */
-    --tech: 205 26% 48%;              /* #5A7D9A 冷调浅蓝 */
-    --tech-deep: 210 35% 35%;         /* #3A5A7A 深冷蓝灰 */
-    --tech-glow: 205 35% 66%;         /* #8AAEC6 浅冰蓝 */
-    --tech-light: 205 38% 83%;        /* #C4D8E6 冰蓝白 */
+    /* 点缀色 — 极简古铜 */
+    --bronze: 30 30% 42%;             /* #8B7355 古铜 */
+    --bronze-light: 32 25% 66%;       /* #B5A48C 浅铜 */
+    --bronze-glow: 35 35% 80%;        /* #D4C4A8 铜光 */
 
-    /* 文本与中性色 */
-    --text-primary: 30 31% 18%;       /* #3C2F20 深棕黑 */
-    --text-secondary: 30 21% 29%;     /* #5A4A3A 暖棕灰 */
-    --text-muted: 30 15% 41%;         /* #7A6A5A 浅棕灰 */
-    --text-tech: 215 26% 23%;         /* #2D3A4A 冷调深灰 */
+    /* 冷调辅色 — 山岚 */
+    --mist-blue: 185 12% 50%;         /* #6B8A8E 山岚蓝 */
+    --mist-blue-light: 185 10% 68%;   /* #9FB5B8 浅岚 */
 
     /* 语义化Token */
-    --background: 35 63% 89%;
-    --foreground: 30 31% 18%;
-    --card: 35 63% 93%;
-    --card-foreground: 30 31% 18%;
-    --primary: 205 26% 48%;
-    --primary-foreground: 44 100% 95%;
-    --secondary: 30 48% 81%;
-    --secondary-foreground: 30 31% 18%;
-    --muted: 30 38% 72%;
-    --muted-foreground: 30 15% 41%;
-    --accent: 35 100% 88%;
-    --accent-foreground: 30 31% 18%;
-    --border: 30 38% 72%;
-    --input: 30 48% 85%;
-    --ring: 205 26% 48%;
+    --background: 30 14% 95%;
+    --foreground: 20 5% 25%;
+    --card: 30 12% 89%;
+    --card-foreground: 20 5% 25%;
+    --primary: 30 30% 42%;
+    --primary-foreground: 30 14% 95%;
+    --secondary: 30 12% 89%;
+    --secondary-foreground: 20 5% 25%;
+    --muted: 25 6% 72%;
+    --muted-foreground: 20 5% 25%;
+    --accent: 30 30% 42%;
+    --accent-foreground: 30 14% 95%;
+    --border: 30 8% 82%;
+    --input: 30 12% 89%;
+    --ring: 30 30% 42%;
     --radius: 0.375rem;
 
     /* 渐变 */
-    --gradient-paper: linear-gradient(180deg, #F5E9D3 0%, #E8D4B7 100%);
-    --gradient-tech: linear-gradient(135deg, #3A5A7A 0%, #5A7D9A 100%);
-    --gradient-glow: linear-gradient(90deg, transparent 0%, #FFE8C2 50%, transparent 100%);
-    --gradient-tech-glow: linear-gradient(90deg, transparent 0%, #8AAEC6 50%, transparent 100%);
+    --gradient-cloud: linear-gradient(180deg, #F5F3EF 0%, #E8E4DD 100%);
+    --gradient-ink: linear-gradient(135deg, #2C2925 0%, #44403C 100%);
+    --gradient-bronze: linear-gradient(90deg, transparent 0%, #D4C4A8 50%, transparent 100%);
 
     /* 阴影 */
-    --shadow-card: 0 4px 24px hsl(30 31% 18% / 0.06);
-    --shadow-elevated: 0 12px 40px hsl(30 31% 18% / 0.1);
-    --shadow-tech: 0 0 20px hsl(205 35% 66% / 0.3);
-    --shadow-glow: 0 0 12px hsl(35 100% 88% / 0.4);
+    --shadow-card: 0 2px 12px rgba(44,41,37,0.04);
+    --shadow-elevated: 0 8px 32px rgba(44,41,37,0.08);
+    --shadow-subtle: 0 1px 4px rgba(44,41,37,0.03);
 
     /* 过渡 */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -86,31 +82,32 @@
   h1, h2, h3, h4 {
     @apply font-serif;
     letter-spacing: 0.02em;
+    color: #2C2925;
   }
 
   /* 自定义滚动条 */
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: #F5E9D3;
+    background: #F5F3EF;
   }
   ::-webkit-scrollbar-thumb {
-    background: #D4B89B;
+    background: #D4CFC7;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #5A7D9A;
+    background: #B5B0A8;
   }
 }
 
 @layer components {
-  /* 金色装饰线 */
+  /* 古铜装饰线 */
   .ink-divider {
     position: relative;
     height: 1px;
-    background: var(--gradient-glow);
-    opacity: 0.6;
+    background: var(--gradient-bronze);
+    opacity: 0.5;
   }
 
   /* 印章效果 */
@@ -119,8 +116,8 @@
     align-items: center;
     justify-content: center;
     padding: 8px 12px;
-    border: 2px solid #D4B89B;
-    color: #5A4A3A;
+    border: 2px solid #B5B0A8;
+    color: #44403C;
     font-family: 'Noto Serif SC', serif;
     font-weight: 700;
     font-size: 0.75rem;
@@ -132,19 +129,14 @@
   /* 宣纸纹理感 */
   .paper-texture {
     background-image:
-      radial-gradient(ellipse at 20% 50%, hsl(35 63% 92% / 0.5) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, hsl(35 100% 88% / 0.08) 0%, transparent 40%);
-  }
-
-  /* 科技光效 */
-  .tech-glow {
-    box-shadow: 0 0 20px hsl(205 35% 66% / 0.25), inset 0 1px 0 hsl(205 38% 83% / 0.2);
+      radial-gradient(ellipse at 20% 50%, rgba(245,243,239,0.5) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(212,196,168,0.06) 0%, transparent 40%);
   }
 
   /* 文博级卡片 */
   .museum-card {
-    background: hsl(var(--card));
-    border: 1px solid #D4B89B;
+    background: #E8E4DD;
+    border: 1px solid #D4CFC7;
     box-shadow: var(--shadow-card);
     transition: var(--transition-smooth);
   }
@@ -152,7 +144,7 @@
   .museum-card:hover {
     box-shadow: var(--shadow-elevated);
     transform: translateY(-2px);
-    border-color: #5A7D9A;
+    border-color: #B5B0A8;
   }
 }
 

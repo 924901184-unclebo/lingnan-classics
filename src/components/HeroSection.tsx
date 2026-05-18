@@ -21,7 +21,7 @@ function TypingDots() {
         <motion.div
           key={i}
           className="w-1.5 h-1.5 rounded-full"
-          style={{ background: '#8AAEC6' }}
+          style={{ background: '#B5B0A8' }}
           animate={{ opacity: [0.3, 1, 0.3] }}
           transition={{ duration: 1, delay: i * 0.2, repeat: Infinity }}
         />
@@ -34,7 +34,7 @@ export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [isLoaded, setIsLoaded] = useState(false)
-  const [chatStep, setChatStep] = useState(0) // 0=idle, 1=user msg, 2=typing, 3=response
+  const [chatStep, setChatStep] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,16 +64,16 @@ export function HeroSection() {
     <section
       ref={containerRef}
       className="relative min-h-screen overflow-hidden"
-      style={{ background: '#2A2218' }}
+      style={{ background: '#2C2925' }}
     >
       {/* Background image — positioned in lower portion */}
       <div className="absolute inset-x-0 bottom-0 h-[65%]">
         <motion.img
-          src="/images/hero-books-shelf.png"
+          src="/images/hero-inkwash-mountain.png"
           alt=""
           className="w-full h-full object-cover object-center"
           initial={{ scale: 1.05, opacity: 0 }}
-          animate={isLoaded ? { scale: 1, opacity: 0.65 } : { scale: 1.05, opacity: 0 }}
+          animate={isLoaded ? { scale: 1, opacity: 0.6 } : { scale: 1.05, opacity: 0 }}
           transition={{ duration: 2, ease: [0.25, 0.46, 0.45, 0.94] }}
           style={{
             transform: `translateY(${scrollProgress * 40}px)`,
@@ -83,7 +83,7 @@ export function HeroSection() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'linear-gradient(180deg, #2A2218 0%, rgba(42,34,24,0.4) 40%, rgba(42,34,24,0.15) 70%, rgba(42,34,24,0.5) 100%)',
+            background: 'linear-gradient(180deg, #2C2925 0%, rgba(44,41,37,0.35) 40%, rgba(44,41,37,0.15) 70%, rgba(44,41,37,0.5) 100%)',
           }}
         />
       </div>
@@ -92,15 +92,15 @@ export function HeroSection() {
       <div
         className="absolute inset-x-0 top-0 h-[45%] pointer-events-none"
         style={{
-          background: 'linear-gradient(180deg, #2A2218 0%, #2A2218 60%, transparent 100%)',
+          background: 'linear-gradient(180deg, #2C2925 0%, #2C2925 60%, transparent 100%)',
         }}
       />
 
-      {/* Warm vignette with tech tint */}
+      {/* Vignette */}
       <div
         className="absolute inset-0 pointer-events-none z-10"
         style={{
-          background: 'radial-gradient(ellipse 80% 70% at 50% 55%, transparent 30%, rgba(42,34,24,0.7) 100%)',
+          background: 'radial-gradient(ellipse 80% 70% at 50% 55%, transparent 30%, rgba(44,41,37,0.7) 100%)',
         }}
       />
 
@@ -112,7 +112,7 @@ export function HeroSection() {
           animate={isLoaded ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
           className="w-16 h-[1px] mb-6"
-          style={{ background: 'linear-gradient(90deg, transparent, #FFE8C2, transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, #B5B0A8, transparent)' }}
         />
 
         {/* Main Title */}
@@ -123,8 +123,8 @@ export function HeroSection() {
           className="font-serif text-center leading-[1.3] tracking-[0.06em]"
           style={{
             fontSize: 'clamp(1.8rem, 5vw, 3.8rem)',
-            color: '#FFF9E8',
-            textShadow: '0 2px 20px rgba(0,0,0,0.5)',
+            color: '#F5F3EF',
+            textShadow: '0 2px 20px rgba(0,0,0,0.4)',
           }}
         >
           岭南古籍文献语料数据
@@ -138,43 +138,42 @@ export function HeroSection() {
           animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.8 }}
           className="font-sans text-[11px] md:text-xs tracking-[0.35em] uppercase mt-4 text-center"
-          style={{ color: 'rgba(196,216,230,0.4)' }}
+          style={{ color: 'rgba(181,176,168,0.5)' }}
         >
           LINGNAN ANCIENT CLASSICS AI PLATFORM
         </motion.p>
 
-        {/* AI Agent Chat Panel — semi-transparent entry */}
+        {/* AI Agent Chat Panel */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 1, delay: 1.2 }}
           className="mt-10 w-full max-w-[560px] rounded-lg overflow-hidden backdrop-blur-md"
           style={{
-            background: 'rgba(45, 58, 74, 0.45)',
-            border: '1px solid rgba(138,174,198,0.2)',
-            boxShadow: '0 16px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(196,216,230,0.06)',
+            background: 'rgba(44, 41, 37, 0.5)',
+            border: '1px solid rgba(181,176,168,0.15)',
+            boxShadow: '0 16px 48px rgba(0,0,0,0.35), inset 0 1px 0 rgba(245,243,239,0.04)',
           }}
         >
           {/* Panel Header */}
           <div
             className="flex items-center justify-between px-5 py-3"
-            style={{ borderBottom: '1px solid rgba(138,174,198,0.12)' }}
+            style={{ borderBottom: '1px solid rgba(181,176,168,0.1)' }}
           >
             <div className="flex items-center gap-2">
-              <Sparkles size={12} style={{ color: '#8AAEC6' }} />
-              <span className="font-serif text-xs" style={{ color: '#C4D8E6' }}>
+              <Sparkles size={12} style={{ color: '#B5A48C' }} />
+              <span className="font-serif text-xs" style={{ color: 'rgba(245,243,239,0.7)' }}>
                 古籍智能体
               </span>
               <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: 'rgba(100,200,120,0.7)' }} />
             </div>
-            <span className="text-[9px] font-sans" style={{ color: 'rgba(196,216,230,0.35)' }}>
+            <span className="text-[9px] font-sans" style={{ color: 'rgba(181,176,168,0.4)' }}>
               知识图谱 · 已就绪
             </span>
           </div>
 
           {/* Chat Body */}
           <div className="px-5 py-4 min-h-[120px]">
-            {/* User question */}
             {chatStep >= 1 && (
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
@@ -184,9 +183,9 @@ export function HeroSection() {
                 <div
                   className="max-w-[80%] px-3.5 py-2.5 rounded-lg text-[12px] font-sans leading-relaxed"
                   style={{
-                    background: 'rgba(90,125,154,0.35)',
-                    border: '1px solid rgba(90,125,154,0.5)',
-                    color: '#FFF9E8',
+                    background: 'rgba(139,115,85,0.25)',
+                    border: '1px solid rgba(139,115,85,0.35)',
+                    color: 'rgba(245,243,239,0.9)',
                   }}
                 >
                   {DEMO_CONVERSATION[0].text}
@@ -194,7 +193,6 @@ export function HeroSection() {
               </motion.div>
             )}
 
-            {/* Typing indicator */}
             {chatStep === 2 && (
               <motion.div
                 initial={{ opacity: 0 }}
@@ -203,14 +201,13 @@ export function HeroSection() {
               >
                 <div
                   className="inline-flex px-3.5 py-2.5 rounded-lg"
-                  style={{ background: 'rgba(196,216,230,0.06)', border: '1px solid rgba(196,216,230,0.1)' }}
+                  style={{ background: 'rgba(245,243,239,0.05)', border: '1px solid rgba(245,243,239,0.08)' }}
                 >
                   <TypingDots />
                 </div>
               </motion.div>
             )}
 
-            {/* AI response */}
             {chatStep >= 3 && (
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
@@ -219,13 +216,13 @@ export function HeroSection() {
                 <div
                   className="max-w-[90%] px-3.5 py-2.5 rounded-lg text-[12px] font-sans leading-relaxed"
                   style={{
-                    background: 'rgba(196,216,230,0.06)',
-                    border: '1px solid rgba(196,216,230,0.1)',
-                    color: 'rgba(255,249,232,0.75)',
+                    background: 'rgba(245,243,239,0.05)',
+                    border: '1px solid rgba(245,243,239,0.08)',
+                    color: 'rgba(245,243,239,0.7)',
                   }}
                 >
                   {DEMO_CONVERSATION[1].text}
-                  <span className="block mt-1.5 text-[10px]" style={{ color: 'rgba(255,232,194,0.6)' }}>
+                  <span className="block mt-1.5 text-[10px]" style={{ color: 'rgba(181,164,140,0.6)' }}>
                     📎 引自《白沙子全集》卷二
                   </span>
                 </div>
@@ -239,10 +236,10 @@ export function HeroSection() {
               {PRESET_QUESTIONS.map(q => (
                 <span
                   key={q}
-                  className="text-[10px] font-sans px-2.5 py-1 rounded-full cursor-pointer transition-colors hover:bg-[rgba(138,174,198,0.12)]"
+                  className="text-[10px] font-sans px-2.5 py-1 rounded-full cursor-pointer transition-colors hover:bg-[rgba(181,176,168,0.1)]"
                   style={{
-                    border: '1px solid rgba(138,174,198,0.2)',
-                    color: 'rgba(196,216,230,0.5)',
+                    border: '1px solid rgba(181,176,168,0.15)',
+                    color: 'rgba(245,243,239,0.4)',
                   }}
                 >
                   {q}
@@ -250,18 +247,17 @@ export function HeroSection() {
               ))}
             </div>
 
-            {/* Input bar */}
             <div
               className="flex items-center gap-3 px-3.5 py-2.5 rounded-lg"
               style={{
-                background: 'rgba(196,216,230,0.04)',
-                border: '1px solid rgba(196,216,230,0.1)',
+                background: 'rgba(245,243,239,0.04)',
+                border: '1px solid rgba(245,243,239,0.08)',
               }}
             >
-              <span className="text-[12px] font-sans flex-1" style={{ color: 'rgba(196,216,230,0.3)' }}>
+              <span className="text-[12px] font-sans flex-1" style={{ color: 'rgba(245,243,239,0.25)' }}>
                 向古籍智能体提问...
               </span>
-              <Send size={13} style={{ color: '#8AAEC6' }} />
+              <Send size={13} style={{ color: 'rgba(181,164,140,0.5)' }} />
             </div>
           </div>
         </motion.div>
@@ -274,18 +270,18 @@ export function HeroSection() {
         transition={{ delay: 2.5 }}
         className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
       >
-        <span className="text-[10px] font-sans tracking-[0.25em]" style={{ color: 'rgba(196,216,230,0.3)' }}>
+        <span className="text-[10px] font-sans tracking-[0.25em]" style={{ color: 'rgba(181,176,168,0.3)' }}>
           SCROLL
         </span>
         <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}>
-          <ChevronDown size={16} style={{ color: 'rgba(196,216,230,0.3)' }} />
+          <ChevronDown size={16} style={{ color: 'rgba(181,176,168,0.3)' }} />
         </motion.div>
       </motion.div>
 
-      {/* Bottom gradient transition to Knowledge Graph */}
+      {/* Bottom gradient transition */}
       <div
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-30"
-        style={{ background: 'linear-gradient(180deg, transparent 0%, #2D3A4A 100%)' }}
+        style={{ background: 'linear-gradient(180deg, transparent 0%, #2C2925 100%)' }}
       />
     </section>
   )

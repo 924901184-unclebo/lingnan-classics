@@ -86,17 +86,8 @@ export function CollectionSection() {
       id="collection"
       ref={ref}
       className="relative py-28 lg:py-36 px-6 lg:px-12"
-      style={{ background: '#F5E9D3' }}
+      style={{ background: '#F5F3EF' }}
     >
-      {/* Subtle texture overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(60,47,32,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(60,47,32,0.06) 1px, transparent 1px)',
-          backgroundSize: '80px 80px',
-        }}
-      />
-
       <div className="relative z-10 max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto">
         {/* Header */}
         <motion.div
@@ -107,15 +98,15 @@ export function CollectionSection() {
         >
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <span className="text-xs tracking-[0.3em] uppercase font-sans" style={{ color: '#5A7D9A' }}>
+              <span className="text-xs tracking-[0.3em] uppercase font-sans" style={{ color: '#8B7355' }}>
                 BOOKS
               </span>
-              <div className="h-px w-16" style={{ background: 'linear-gradient(90deg, #5A7D9A, transparent)' }} />
+              <div className="h-px w-16" style={{ background: 'linear-gradient(90deg, #8B7355, transparent)' }} />
             </div>
-            <h2 className="font-serif text-3xl md:text-5xl" style={{ color: '#3C2F20' }}>
+            <h2 className="font-serif text-3xl md:text-5xl" style={{ color: '#2C2925' }}>
               岭南藏书
             </h2>
-            <p className="mt-3 font-sans leading-relaxed text-sm max-w-[460px]" style={{ color: '#5A4A3A' }}>
+            <p className="mt-3 font-sans leading-relaxed text-sm max-w-[460px]" style={{ color: '#44403C' }}>
               岭南古籍出版精品，汇聚方志、别集、丛书、档案等类目。全新校注整理，传承千年文脉。
             </p>
           </div>
@@ -130,20 +121,20 @@ export function CollectionSection() {
             ].map(stat => (
               <div key={stat.label} className="flex items-center gap-2.5">
                 <div className="w-7 h-7 rounded-md flex items-center justify-center" style={{
-                  background: 'rgba(90,125,154,0.08)',
-                  border: '1px solid rgba(90,125,154,0.15)',
-                  color: '#5A7D9A',
+                  background: 'rgba(139,115,85,0.08)',
+                  border: '1px solid rgba(139,115,85,0.12)',
+                  color: '#8B7355',
                 }}>{stat.icon}</div>
                 <div>
-                  <div className="font-serif text-sm" style={{ color: '#3C2F20' }}>{stat.val}</div>
-                  <div className="text-[9px] font-sans" style={{ color: '#7A6A5A' }}>{stat.label}</div>
+                  <div className="font-serif text-sm" style={{ color: '#2C2925' }}>{stat.val}</div>
+                  <div className="text-[9px] font-sans" style={{ color: '#B5B0A8' }}>{stat.label}</div>
                 </div>
               </div>
             ))}
           </div>
         </motion.div>
 
-        {/* Book Grid — 3 columns */}
+        {/* Book Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {books.map((book, i) => (
             <motion.div
@@ -153,27 +144,17 @@ export function CollectionSection() {
               transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
               className="group cursor-pointer rounded-lg overflow-hidden transition-all duration-300 hover:translate-y-[-3px]"
               style={{
-                background: '#FFF9E8',
-                border: '1px solid #D4B89B',
-                boxShadow: '0 4px 20px rgba(60,47,32,0.06)',
+                background: '#E8E4DD',
+                border: '1px solid #D4CFC7',
+                boxShadow: '0 2px 12px rgba(44,41,37,0.04)',
               }}
             >
-              {/* Book cover area */}
               {book.image && (
                 <div className="relative h-40 overflow-hidden">
-                  <img
-                    src={book.image}
-                    alt={book.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0" style={{
-                    background: 'linear-gradient(180deg, transparent 40%, rgba(42,34,24,0.6) 100%)',
-                  }} />
+                  <img src={book.image} alt={book.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 40%, rgba(44,41,37,0.6) 100%)' }} />
                   <div className="absolute top-3 left-3">
-                    <span className="text-[9px] font-sans px-2 py-0.5 rounded-sm" style={{
-                      background: '#5A7D9A',
-                      color: '#FFF9E8',
-                    }}>{book.category}</span>
+                    <span className="text-[9px] font-sans px-2 py-0.5 rounded-sm" style={{ background: '#44403C', color: '#F5F3EF' }}>{book.category}</span>
                   </div>
                   <div className="absolute bottom-3 left-3 right-3">
                     <h4 className="font-serif text-base text-white leading-snug">{book.title}</h4>
@@ -181,26 +162,21 @@ export function CollectionSection() {
                 </div>
               )}
 
-              {/* Book info */}
               <div className="p-5">
                 {!book.image && (
                   <>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-[9px] font-sans px-2 py-0.5 rounded-sm" style={{
-                        background: 'rgba(90,125,154,0.1)',
-                        color: '#5A7D9A',
-                        border: '1px solid rgba(90,125,154,0.2)',
-                      }}>{book.category}</span>
-                      <span className="text-[10px] font-sans" style={{ color: '#7A6A5A' }}>{book.year}</span>
+                      <span className="text-[9px] font-sans px-2 py-0.5 rounded-sm" style={{ background: 'rgba(139,115,85,0.1)', color: '#8B7355', border: '1px solid rgba(139,115,85,0.15)' }}>{book.category}</span>
+                      <span className="text-[10px] font-sans" style={{ color: '#B5B0A8' }}>{book.year}</span>
                     </div>
-                    <h4 className="font-serif text-base mb-2" style={{ color: '#3C2F20' }}>{book.title}</h4>
+                    <h4 className="font-serif text-base mb-2" style={{ color: '#2C2925' }}>{book.title}</h4>
                   </>
                 )}
 
-                <div className="flex items-center gap-2 text-[11px] font-sans mb-2" style={{ color: '#5A4A3A' }}>
+                <div className="flex items-center gap-2 text-[11px] font-sans mb-2" style={{ color: '#44403C' }}>
                   <span>{book.author}</span>
                 </div>
-                <div className="flex items-center gap-3 text-[10px] font-sans mb-3" style={{ color: '#7A6A5A' }}>
+                <div className="flex items-center gap-3 text-[10px] font-sans mb-3" style={{ color: '#B5B0A8' }}>
                   <span>{book.publisher}</span>
                   <span>·</span>
                   <span>{book.year}</span>
@@ -208,16 +184,16 @@ export function CollectionSection() {
                   <span>{book.pages}</span>
                 </div>
 
-                <p className="text-[12px] font-sans leading-relaxed mb-4" style={{ color: '#5A4A3A' }}>
+                <p className="text-[12px] font-sans leading-relaxed mb-4" style={{ color: '#44403C' }}>
                   {book.description}
                 </p>
 
                 <div className="flex flex-wrap gap-1.5">
                   {book.tags.map(tag => (
                     <span key={tag} className="text-[9px] font-sans px-2 py-0.5 rounded-full" style={{
-                      background: 'rgba(255,232,194,0.4)',
-                      color: '#5A4A3A',
-                      border: '1px solid #D4B89B',
+                      background: 'rgba(181,164,140,0.15)',
+                      color: '#8B7355',
+                      border: '1px solid rgba(181,164,140,0.25)',
                     }}>{tag}</span>
                   ))}
                 </div>
@@ -232,18 +208,13 @@ export function CollectionSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.7 }}
           className="mt-10 rounded-lg p-5 flex items-center justify-between cursor-pointer group transition-all duration-300 hover:translate-y-[-1px]"
-          style={{
-            background: 'rgba(90,125,154,0.06)',
-            border: '1px solid rgba(90,125,154,0.15)',
-          }}
+          style={{ background: 'rgba(139,115,85,0.06)', border: '1px solid rgba(139,115,85,0.12)' }}
         >
           <div className="flex items-center gap-3">
-            <BookOpen size={16} style={{ color: '#5A7D9A' }} />
-            <span className="text-sm font-sans" style={{ color: '#5A4A3A' }}>
-              浏览全部 260+ 出版图书
-            </span>
+            <BookOpen size={16} style={{ color: '#8B7355' }} />
+            <span className="text-sm font-sans" style={{ color: '#44403C' }}>浏览全部 260+ 出版图书</span>
           </div>
-          <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" style={{ color: '#5A7D9A' }} />
+          <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" style={{ color: '#8B7355' }} />
         </motion.div>
       </div>
     </section>

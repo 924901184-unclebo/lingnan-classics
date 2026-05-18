@@ -19,11 +19,11 @@ interface GraphEdge {
 }
 
 const NODE_COLORS: Record<string, { fill: string; glow: string }> = {
-  person: { fill: '#8AAEC6', glow: 'rgba(138,174,198,0.3)' },
-  book: { fill: '#C4D8E6', glow: 'rgba(196,216,230,0.3)' },
-  place: { fill: '#FFE8C2', glow: 'rgba(255,232,194,0.3)' },
-  clan: { fill: '#D4B89B', glow: 'rgba(212,184,155,0.3)' },
-  event: { fill: '#5A7D9A', glow: 'rgba(90,125,154,0.3)' },
+  person: { fill: '#B5B0A8', glow: 'rgba(181,176,168,0.3)' },
+  book: { fill: '#D4CFC7', glow: 'rgba(212,207,199,0.3)' },
+  place: { fill: '#B5A48C', glow: 'rgba(181,164,140,0.3)' },
+  clan: { fill: '#9FB5B8', glow: 'rgba(159,181,184,0.3)' },
+  event: { fill: '#6B8A8E', glow: 'rgba(107,138,142,0.3)' },
 }
 
 const NODES: GraphNode[] = [
@@ -96,17 +96,17 @@ export function KnowledgeGraphSection() {
       const { w, h } = sizeRef.current
       ctx.clearRect(0, 0, w, h)
 
-      // Draw animated background particles
+      // Background particles
       for (let i = 0; i < 30; i++) {
         const px = (Math.sin(time * 0.0003 + i * 2.1) * 0.5 + 0.5) * w
         const py = (Math.cos(time * 0.0004 + i * 1.7) * 0.5 + 0.5) * h
         ctx.beginPath()
         ctx.arc(px, py, 1.5, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(138, 174, 198, 0.2)'
+        ctx.fillStyle = 'rgba(181, 176, 168, 0.15)'
         ctx.fill()
       }
 
-      // Draw edges
+      // Edges
       EDGES.forEach((edge) => {
         const src = NODES.find(n => n.id === edge.source)
         const tgt = NODES.find(n => n.id === edge.target)
@@ -114,13 +114,9 @@ export function KnowledgeGraphSection() {
 
         const sx = src.x * w, sy = src.y * h
         const tx = tgt.x * w, ty = tgt.y * h
+        const isActive = selectedNode && (selectedNode.id === src.id || selectedNode.id === tgt.id)
+        const isHoverEdge = hoveredNode && (hoveredNode.id === src.id || hoveredNode.id === tgt.id)
 
-        const isActive = selectedNode &&
-          (selectedNode.id === src.id || selectedNode.id === tgt.id)
-        const isHoverEdge = hoveredNode &&
-          (hoveredNode.id === src.id || hoveredNode.id === tgt.id)
-
-        // Curved bezier edge
         const midX = (sx + tx) / 2 + Math.sin(time * 0.001 + parseFloat(edge.source)) * 8
         const midY = (sy + ty) / 2 - 25
 
@@ -129,16 +125,16 @@ export function KnowledgeGraphSection() {
         ctx.quadraticCurveTo(midX, midY, tx, ty)
 
         if (isActive) {
-          ctx.strokeStyle = '#FFE8C2'
+          ctx.strokeStyle = '#D4C4A8'
           ctx.lineWidth = 2
           ctx.setLineDash([8, 4])
           ctx.lineDashOffset = -time * 0.02
         } else if (isHoverEdge) {
-          ctx.strokeStyle = 'rgba(138, 174, 198, 0.5)'
+          ctx.strokeStyle = 'rgba(181, 176, 168, 0.45)'
           ctx.lineWidth = 1.5
           ctx.setLineDash([])
         } else {
-          ctx.strokeStyle = 'rgba(196, 216, 230, 0.1)'
+          ctx.strokeStyle = 'rgba(181, 176, 168, 0.1)'
           ctx.lineWidth = 1
           ctx.setLineDash([])
         }
@@ -146,22 +142,20 @@ export function KnowledgeGraphSection() {
         ctx.stroke()
         ctx.setLineDash([])
 
-        // Edge label for active
         if (isActive) {
           ctx.font = '10px "Noto Sans SC", sans-serif'
-          ctx.fillStyle = '#FFE8C2'
+          ctx.fillStyle = '#D4C4A8'
           ctx.textAlign = 'center'
           ctx.textBaseline = 'middle'
           ctx.fillText(edge.label, midX, midY - 8)
         }
       })
 
-      // Draw nodes
+      // Nodes
       NODES.forEach((node) => {
         const nx = node.x * w
         const ny = node.y * h
         const r = node.radius
-
         const isSelected = selectedNode?.id === node.id
         const isHovered = hoveredNode?.id === node.id
         const isConnected = selectedNode && EDGES.some(
@@ -170,11 +164,9 @@ export function KnowledgeGraphSection() {
         )
         const dimmed = selectedNode && !isSelected && !isConnected
         const colors = NODE_COLORS[node.type]
-
         const drawRadius = isHovered ? r * 1.12 : r
         const alpha = dimmed ? 0.25 : 1
 
-        // Outer glow ring
         if (isSelected || isHovered) {
           const gradient = ctx.createRadialGradient(nx, ny, drawRadius, nx, ny, drawRadius + 15)
           gradient.addColorStop(0, colors.glow)
@@ -185,35 +177,29 @@ export function KnowledgeGraphSection() {
           ctx.fill()
         }
 
-        // Pulsing ring for selected
         if (isSelected) {
           const pulse = Math.sin(time * 0.003) * 0.3 + 0.7
           ctx.beginPath()
           ctx.arc(nx, ny, drawRadius + 5, 0, Math.PI * 2)
-          ctx.strokeStyle = `rgba(255, 232, 194, ${pulse * 0.6})`
+          ctx.strokeStyle = `rgba(212, 196, 168, ${pulse * 0.6})`
           ctx.lineWidth = 1.5
           ctx.stroke()
         }
 
-        // Node fill
         ctx.beginPath()
         ctx.arc(nx, ny, drawRadius, 0, Math.PI * 2)
         ctx.globalAlpha = alpha
         ctx.fillStyle = colors.fill
         ctx.fill()
 
-        // Subtle border
-        ctx.strokeStyle = isSelected
-          ? '#FFE8C2'
-          : 'rgba(196, 216, 230, 0.25)'
+        ctx.strokeStyle = isSelected ? '#D4C4A8' : 'rgba(245, 243, 239, 0.15)'
         ctx.lineWidth = isSelected ? 2 : 1
         ctx.stroke()
 
-        // Label text
         ctx.font = `${node.radius > 30 ? 13 : 11}px "Noto Serif SC", serif`
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
-        ctx.fillStyle = `rgba(45, 58, 74, ${alpha * 0.95})`
+        ctx.fillStyle = `rgba(44, 41, 37, ${alpha * 0.95})`
         ctx.fillText(node.label, nx, ny)
 
         ctx.globalAlpha = 1
@@ -236,12 +222,9 @@ export function KnowledgeGraphSection() {
     const rect = canvas.getBoundingClientRect()
     const x = (clientX - rect.left) / rect.width
     const y = (clientY - rect.top) / rect.height
-
     return NODES.find(n => {
-      const dx = n.x - x
-      const dy = n.y - y
-      const dist = Math.sqrt(dx * dx + dy * dy)
-      return dist < (n.radius / sizeRef.current.w) * 1.5
+      const dx = n.x - x, dy = n.y - y
+      return Math.sqrt(dx * dx + dy * dy) < (n.radius / sizeRef.current.w) * 1.5
     }) || null
   }
 
@@ -253,9 +236,7 @@ export function KnowledgeGraphSection() {
   const handleMove = (e: React.MouseEvent) => {
     const node = getNodeAtPos(e.clientX, e.clientY)
     setHoveredNode(node)
-    if (canvasRef.current) {
-      canvasRef.current.style.cursor = node ? 'pointer' : 'default'
-    }
+    if (canvasRef.current) canvasRef.current.style.cursor = node ? 'pointer' : 'default'
   }
 
   const typeConfig = {
@@ -271,19 +252,18 @@ export function KnowledgeGraphSection() {
       id="knowledge-graph"
       ref={ref}
       className="relative py-32 px-6 lg:px-12 overflow-hidden"
-      style={{ background: '#2D3A4A' }}
+      style={{ background: '#2C2925' }}
     >
-      {/* Subtle grid overlay */}
+      {/* Subtle grid */}
       <div
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: 'linear-gradient(rgba(196,216,230,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(196,216,230,0.15) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(181,176,168,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(181,176,168,0.15) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
         }}
       />
 
       <div className="relative z-10 max-w-[1400px] 2xl:max-w-[1600px] 3xl:max-w-[1800px] mx-auto">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -291,21 +271,20 @@ export function KnowledgeGraphSection() {
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-3">
-            <span className="text-xs tracking-[0.3em] uppercase font-sans" style={{ color: '#8AAEC6' }}>
+            <span className="text-xs tracking-[0.3em] uppercase font-sans" style={{ color: '#B5A48C' }}>
               KNOWLEDGE GRAPH
             </span>
-            <div className="h-px flex-1 max-w-[120px]" style={{ background: 'linear-gradient(90deg, rgba(138,174,198,0.5), transparent)' }} />
+            <div className="h-px flex-1 max-w-[120px]" style={{ background: 'linear-gradient(90deg, rgba(181,164,140,0.5), transparent)' }} />
           </div>
-          <h2 className="font-serif text-3xl md:text-5xl mt-2" style={{ color: '#FFF9E8' }}>
+          <h2 className="font-serif text-3xl md:text-5xl mt-2" style={{ color: '#F5F3EF' }}>
             岭南知识图谱
           </h2>
-          <p className="mt-4 max-w-[550px] font-sans leading-relaxed text-sm" style={{ color: 'rgba(196,216,230,0.5)' }}>
+          <p className="mt-4 max-w-[550px] font-sans leading-relaxed text-sm" style={{ color: 'rgba(181,176,168,0.55)' }}>
             以人物、典籍、宗族、地域四维度构建岭南文化知识网络。
             点击节点探索千年文脉的深层关联与传承脉络。
           </p>
         </motion.div>
 
-        {/* Graph Canvas */}
         <motion.div
           ref={containerRef}
           initial={{ opacity: 0, scale: 0.97 }}
@@ -314,8 +293,8 @@ export function KnowledgeGraphSection() {
           className="relative rounded-sm overflow-hidden"
           style={{
             height: '520px',
-            border: '1px solid rgba(138,174,198,0.12)',
-            background: 'rgba(196,216,230,0.04)',
+            border: '1px solid rgba(181,176,168,0.1)',
+            background: 'rgba(245,243,239,0.03)',
           }}
         >
           <canvas
@@ -326,25 +305,15 @@ export function KnowledgeGraphSection() {
             className="w-full h-full"
           />
 
-          {/* Legend */}
           <div className="absolute bottom-4 left-4 flex items-center gap-5">
             {Object.entries(typeConfig).map(([type, config]) => (
               <div key={type} className="flex items-center gap-1.5">
-                <div
-                  className="w-3 h-3 rounded-full border"
-                  style={{
-                    background: NODE_COLORS[type].fill,
-                    borderColor: 'rgba(196,216,230,0.2)',
-                  }}
-                />
-                <span className="text-[10px] font-sans" style={{ color: 'rgba(196,216,230,0.5)' }}>
-                  {config.label}
-                </span>
+                <div className="w-3 h-3 rounded-full border" style={{ background: NODE_COLORS[type].fill, borderColor: 'rgba(181,176,168,0.15)' }} />
+                <span className="text-[10px] font-sans" style={{ color: 'rgba(181,176,168,0.5)' }}>{config.label}</span>
               </div>
             ))}
           </div>
 
-          {/* Selected Node Detail Panel */}
           <AnimatePresence>
             {selectedNode && (
               <motion.div
@@ -353,34 +322,27 @@ export function KnowledgeGraphSection() {
                 exit={{ opacity: 0, x: 20, scale: 0.95 }}
                 className="absolute top-4 right-4 rounded-sm p-5 max-w-[260px]"
                 style={{
-                  background: 'rgba(45, 58, 74, 0.92)',
-                  border: '1px solid rgba(255, 232, 194, 0.2)',
+                  background: 'rgba(44, 41, 37, 0.92)',
+                  border: '1px solid rgba(181,164,140,0.2)',
                   backdropFilter: 'blur(12px)',
                   boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
                 }}
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <div
-                    className="w-2.5 h-2.5 rounded-full"
-                    style={{ background: NODE_COLORS[selectedNode.type].fill }}
-                  />
-                  <span className="text-[10px] font-sans" style={{ color: '#FFE8C2' }}>
-                    {typeConfig[selectedNode.type].label}
-                  </span>
+                  <div className="w-2.5 h-2.5 rounded-full" style={{ background: NODE_COLORS[selectedNode.type].fill }} />
+                  <span className="text-[10px] font-sans" style={{ color: '#B5A48C' }}>{typeConfig[selectedNode.type].label}</span>
                 </div>
-                <div className="font-serif text-base mb-3" style={{ color: '#FFF9E8' }}>
-                  {selectedNode.label}
-                </div>
+                <div className="font-serif text-base mb-3" style={{ color: '#F5F3EF' }}>{selectedNode.label}</div>
                 <div className="space-y-1.5">
                   {EDGES.filter(e => e.source === selectedNode.id || e.target === selectedNode.id).map((edge, i) => {
                     const otherId = edge.source === selectedNode.id ? edge.target : edge.source
                     const other = NODES.find(n => n.id === otherId)
                     return (
-                      <div key={i} className="flex items-center gap-2 text-[11px] font-sans" style={{ color: 'rgba(196,216,230,0.5)' }}>
-                        <span style={{ color: '#FFE8C2' }}>—</span>
+                      <div key={i} className="flex items-center gap-2 text-[11px] font-sans" style={{ color: 'rgba(181,176,168,0.55)' }}>
+                        <span style={{ color: '#B5A48C' }}>—</span>
                         <span>{edge.label}</span>
                         <span>→</span>
-                        <span style={{ color: '#C4D8E6' }}>{other?.label}</span>
+                        <span style={{ color: '#D4CFC7' }}>{other?.label}</span>
                       </div>
                     )
                   })}
@@ -390,13 +352,12 @@ export function KnowledgeGraphSection() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Stats Row */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 pt-8"
-          style={{ borderTop: '1px solid rgba(138,174,198,0.12)' }}
+          style={{ borderTop: '1px solid rgba(181,176,168,0.1)' }}
         >
           {[
             { number: '2,400+', label: '知识节点' },
@@ -405,12 +366,8 @@ export function KnowledgeGraphSection() {
             { number: '实时', label: '动态推理引擎' },
           ].map((stat) => (
             <div key={stat.label}>
-              <div className="font-serif text-xl" style={{ color: '#C4D8E6' }}>
-                {stat.number}
-              </div>
-              <div className="text-[11px] font-sans mt-1" style={{ color: 'rgba(196,216,230,0.4)' }}>
-                {stat.label}
-              </div>
+              <div className="font-serif text-xl" style={{ color: '#D4CFC7' }}>{stat.number}</div>
+              <div className="text-[11px] font-sans mt-1" style={{ color: 'rgba(181,176,168,0.4)' }}>{stat.label}</div>
             </div>
           ))}
         </motion.div>
